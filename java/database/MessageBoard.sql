@@ -32,9 +32,11 @@ CREATE TABLE posts (
 CREATE TABLE comments (
 	comment_id SERIAL,
 	author_id int,
+	post_id int,
 	content varchar(10000),
 	CONSTRAINT PK_comment PRIMARY KEY (comment_id),
-	CONSTRAINT FK_post FOREIGN KEY (author_id) REFERENCES users(user_id)
+	CONSTRAINT FK_author FOREIGN KEY (author_id) REFERENCES users(user_id),
+	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id)
 );
 
 CREATE TABLE forum_moderators (
