@@ -4,14 +4,16 @@ public class Comment {
     private int commentId;
     private int authorId;
     private String content;
+    private int postId;
 
     public Comment() {
     }
 
-    public Comment(int commentId, int authorId, String content) {
+    public Comment(int commentId, int authorId, String content, int postId) {
         this.commentId = commentId;
         this.authorId = authorId;
         this.content = content;
+        this.postId = postId;
     }
 
     public int getCommentId() {
@@ -36,5 +38,13 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 }
