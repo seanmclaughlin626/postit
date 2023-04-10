@@ -16,17 +16,20 @@ public class JdbcPostDao implements PostDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public List<Post> getPosts() {
-        List<Post> posts = new ArrayList<>();
-        String sql = "SELECT post_id, author_id, title, upvotes, downvotes FROM posts";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while(results.next()){
-            Post post = mapRowToPost(results);
-            posts.add(post);
-        }
-        return posts;
+
+@Override
+public List<Post> getPosts() {
+    List<Post> posts = new ArrayList<>();
+    String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content FROM posts";
+    SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+    while(result.next()){
+        Post post = new Post();
+        post = mapRowToPost(result);
+        posts.add(post);
     }
+    return posts;
+}
+
 
     @Override
     public Post getPostById(int id) {
@@ -55,11 +58,12 @@ public class JdbcPostDao implements PostDao{
     @Override
     public void createPost(Post post) {
         String sql = "INSERT INTO posts (author_id, title, content) VALUES (?, ?, ?)";
-        jdbcTemplate.queryForRowSet(sql, post.getAuthor(), post.getTitle(), post.getContent());
+        jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent());
     }
 
     private Post mapRowToPost(SqlRowSet results){
         Post post = new Post();
+        post.setTitle(results.getString("title"));
         post.setPostId(results.getInt("post_id"));
         post.setContent(results.getString("content"));
         post.setAuthor(results.getInt("author_id"));
