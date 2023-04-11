@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.security.Principal;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class JdbcPostDao implements PostDao{
 @Override
 public List<Post> getPosts() {
     List<Post> posts = new ArrayList<>();
-    String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content FROM posts";
+    String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content, time_created FROM posts";
     SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
     while(result.next()){
         Post post = new Post();
@@ -36,7 +38,7 @@ public List<Post> getPosts() {
     @Override
     public Post getPostById(int id) {
         Post post = new Post();
-        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content FROM posts WHERE post_id = ?";
+        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content, time_created FROM posts WHERE post_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         if(result.next()){
             post = mapRowToPost(result);
@@ -47,7 +49,7 @@ public List<Post> getPosts() {
     @Override
     public List<Post> getPostsByForumId(int id) {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content FROM posts WHERE forum_id = ?";
+        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content, time_created FROM posts WHERE forum_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         while(result.next()){
             Post post = new Post();
@@ -60,8 +62,6 @@ public List<Post> getPosts() {
     @Override
     public void createPost(Post post) {
         post.setTimeCreated(LocalDateTime.now());
-        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        post.setTimeCreatedFormatted(LocalDateTime.now().format(formatTime));
         String sql = "INSERT INTO posts (author_id, title, content, time_created, forum_id) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent(), post.getTimeCreated(), post.getForumId());
     }
@@ -74,8 +74,9 @@ public List<Post> getPosts() {
         post.setAuthor(results.getInt("author_id"));
         int upvoteScore = results.getInt("upvotes") + results.getInt("downvotes");
         post.setUpvoteScore(upvoteScore);
+        Timestamp timestamp = results.getTimestamp("time_created");
+        LocalDateTime localDateTime = timestamp.toLocalDateTime();
+        post.setTimeCreated(localDateTime);
         return post;
     }
-
-
 }

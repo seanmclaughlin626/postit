@@ -5,13 +5,14 @@
 </template>
 
 <script>
-import PostList from '../services/PostService.js';
+import postService from '../services/PostService';
 
 export default {
+
   name: "popular-posts",
   methods: {
     getPosts() {
-      PostList.getAllPosts().then((response) => {
+      postService.getAllPosts().then((response) => {
         this.$store.commit("SET_POSTS", response.data);
       });
     },

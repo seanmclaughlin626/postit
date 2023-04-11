@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.sql.Timestamp;
 
 public class Post {
     private int postId;
@@ -14,9 +15,8 @@ public class Post {
     private String content;
     private int upvoteScore;
     private LocalDateTime timeCreated;
-    private String timeCreatedFormatted;
-
-
+    DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+    private String timeCreatedFormatted = timeCreated.format(formatTime);
 
     public Post(){}
 
@@ -26,9 +26,6 @@ public class Post {
         this.title = title;
         this.content = content;
         this.upvoteScore = upvoteScore;
-        this.timeCreated = LocalDateTime.now();
-        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
     }
 
     public int getPostId() {
