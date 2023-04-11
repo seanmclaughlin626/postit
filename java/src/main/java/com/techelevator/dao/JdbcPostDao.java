@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public List<Post> getPosts() {
 
     @Override
     public void createPost(Post post) {
-        String sql = "INSERT INTO posts (author_id, title, content) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO posts (author_id, title, content, date_time) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent());
     }
 

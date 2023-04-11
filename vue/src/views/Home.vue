@@ -1,12 +1,17 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <popular-posts/>
   </div>
 </template>
 
 <script>
+import PopularPosts from '../components/PopularPosts.vue';
 export default {
+  components:{
+    PopularPosts
+  },
   name: "home"
 };
 </script>
+
+    PopularPosts

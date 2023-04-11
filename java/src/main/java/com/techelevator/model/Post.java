@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Post {
     private int postId;
+    private int forumId;
     private int author;
     private String title;
     private String content;
@@ -80,5 +81,17 @@ public class Post {
 
     public String getTimeCreatedFormatted() {
         return timeCreatedFormatted;
+    }
+
+    public void setForumId(int forumId) {
+        this.forumId = forumId;
+    }
+
+    public void setTimeCreated(LocalDateTime timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
+    public void setTimeCreatedFormatted(String timeCreatedFormatted) {
+        this.timeCreatedFormatted = timeCreatedFormatted;
     }
 }

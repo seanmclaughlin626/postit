@@ -68,4 +68,12 @@ public class Comment {
     public String getTimeCreatedFormatted() {
         return timeCreatedFormatted;
     }
+
+    public void setTimeCreated(LocalDateTime timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
+    public void setTimeCreatedFormatted(String timeCreatedFormatted) {
+        this.timeCreatedFormatted = timeCreatedFormatted;
+    }
 }
