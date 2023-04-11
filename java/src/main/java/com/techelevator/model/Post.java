@@ -18,11 +18,7 @@ public class Post {
 
 
 
-    public Post(){
-        this.timeCreated = LocalDateTime.now();
-        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
-    }
+    public Post(){}
 
     public Post(int postId, int author, String title, String content, int upvoteScore) {
         this.postId = postId;
@@ -93,5 +89,9 @@ public class Post {
 
     public void setTimeCreatedFormatted(String timeCreatedFormatted) {
         this.timeCreatedFormatted = timeCreatedFormatted;
+    }
+
+    public int getForumId() {
+        return forumId;
     }
 }

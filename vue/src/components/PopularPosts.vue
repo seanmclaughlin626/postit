@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import HomeService from "../services/HomeService";
+import PostList from '../services/PostService.js';
 
 export default {
   name: "popular-posts",
   methods: {
     getPosts() {
-      HomeService.getAllPosts().then((response) => {
+      PostList.getAllPosts().then((response) => {
         this.$store.commit("SET_POSTS", response.data);
       });
     },
@@ -26,7 +26,7 @@ export default {
     },
     popularPosts(){
         let orderedPosts = this.recentPosts().sort((post1, post2) => {
-            return post1.timeCreated > post2.timeCreated ? 1 : post2.timeCreated > post1.timeCreated ? -1 : 0;
+            return post1.upvoteScore > post2.upvoteScore ? 1 : post2.upvoteScore > post1.upvoteScore ? -1 : 0;
         })
         if(orderedPosts.length > 10){
         return orderedPosts.slice(0,10);

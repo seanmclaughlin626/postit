@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,8 +59,11 @@ public List<Post> getPosts() {
 
     @Override
     public void createPost(Post post) {
-        String sql = "INSERT INTO posts (author_id, title, content, date_time) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent());
+        post.setTimeCreated(LocalDateTime.now());
+        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+        post.setTimeCreatedFormatted(LocalDateTime.now().format(formatTime));
+        String sql = "INSERT INTO posts (author_id, title, content, time_created, forum_id) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent(), post.getTimeCreated(), post.getForumId());
     }
 
     private Post mapRowToPost(SqlRowSet results){
