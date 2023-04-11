@@ -12,15 +12,15 @@ public class Post {
     private String title;
     private String content;
     private int upvoteScore;
-    private String timeCreated;
+    private LocalDateTime timeCreated;
+    private String timeCreatedFormatted;
 
 
 
     public Post(){
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.now();
+        this.timeCreated = LocalDateTime.now();
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        this.timeCreated = LocalDateTime.now().format(formatTime);
+        this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
     }
 
     public Post(int postId, int author, String title, String content, int upvoteScore) {
@@ -29,10 +29,9 @@ public class Post {
         this.title = title;
         this.content = content;
         this.upvoteScore = upvoteScore;
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.now();
+        this.timeCreated = LocalDateTime.now();
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        this.timeCreated = LocalDateTime.now().format(formatTime);
+        this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
     }
 
     public int getPostId() {
@@ -75,7 +74,11 @@ public class Post {
         this.upvoteScore = upvoteScore;
     }
 
-    public String getTimeCreated() {
+    public LocalDateTime getTimeCreated() {
         return timeCreated;
+    }
+
+    public String getTimeCreatedFormatted() {
+        return timeCreatedFormatted;
     }
 }

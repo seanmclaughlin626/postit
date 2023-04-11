@@ -10,13 +10,13 @@ public class Comment {
     private int authorId;
     private String content;
     private int postId;
-    private String timeCreated;
+    private LocalDateTime timeCreated;
+    private String timeCreatedFormatted;
 
     public Comment() {
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.now();
+        this.timeCreated = LocalDateTime.now();
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        this.timeCreated = LocalDateTime.now().format(formatTime);
+        this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
     }
 
     public Comment(int commentId, int authorId, String content, int postId) {
@@ -24,10 +24,9 @@ public class Comment {
         this.authorId = authorId;
         this.content = content;
         this.postId = postId;
-        LocalDate date = LocalDate.now();
-        LocalTime time = LocalTime.now();
+        this.timeCreated = LocalDateTime.now();
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-        this.timeCreated = LocalDateTime.now().format(formatTime);
+        this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
     }
 
     public int getCommentId() {
@@ -62,7 +61,11 @@ public class Comment {
         this.postId = postId;
     }
 
-    public String getTimeCreated() {
+    public LocalDateTime getTimeCreated() {
         return timeCreated;
+    }
+
+    public String getTimeCreatedFormatted() {
+        return timeCreatedFormatted;
     }
 }
