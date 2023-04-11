@@ -1,10 +1,16 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class Comment {
     private int commentId;
     private int authorId;
     private String content;
     private int postId;
+    private String timeCreated;
 
     public Comment() {
     }
@@ -14,6 +20,10 @@ public class Comment {
         this.authorId = authorId;
         this.content = content;
         this.postId = postId;
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+        this.timeCreated = LocalDateTime.now().format(formatTime);
     }
 
     public int getCommentId() {
@@ -46,5 +56,9 @@ public class Comment {
 
     public void setPostId(int postId) {
         this.postId = postId;
+    }
+
+    public String getTimeCreated() {
+        return timeCreated;
     }
 }
