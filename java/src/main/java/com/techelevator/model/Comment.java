@@ -13,6 +13,10 @@ public class Comment {
     private String timeCreated;
 
     public Comment() {
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+        this.timeCreated = LocalDateTime.now().format(formatTime);
     }
 
     public Comment(int commentId, int authorId, String content, int postId) {

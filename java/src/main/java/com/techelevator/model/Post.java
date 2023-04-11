@@ -16,7 +16,12 @@ public class Post {
 
 
 
-    public Post(){ }
+    public Post(){
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+        this.timeCreated = LocalDateTime.now().format(formatTime);
+    }
 
     public Post(int postId, int author, String title, String content, int upvoteScore) {
         this.postId = postId;
