@@ -3,7 +3,6 @@
       <ul v-for="forum in $store.state.forums" v-bind:key="forum.id">
           <li>{{forum.name}}</li>
       </ul>
-
   </div>
 </template>
 
@@ -16,7 +15,9 @@ export default {
             ForumService.getForumList().then(response => {
                 this.$store.commit("SET_FORUMS", response.data);
             })
-        }
+        },
+
+        
     },
     created(){
         this.getForumsList();

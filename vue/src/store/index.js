@@ -20,9 +20,14 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    forums: []
+    forums: [],
+    posts: []
   },
   mutations: {
+    SET_POSTS(state, data){
+      state.posts = data;
+    },
+
     SET_FORUMS(state, data){
       state.forums = data;
     },

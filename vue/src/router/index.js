@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import forum from '../views/Forum.vue';
 import allForums from '../views/AllForums.vue';
+import allPosts from '../views/AllPosts.vue';
 
 Vue.use(Router)
 
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/forums",
       name: "forums",
       component: allForums,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/posts",
+      name: "posts",
+      component: allPosts,
       meta: {
         requiresAuth: false
       }
