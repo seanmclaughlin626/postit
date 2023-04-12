@@ -35,7 +35,7 @@ public class JdbcPostDao implements PostDao{
     }
 
 
-//    TODO: update query for formatted timestamp the same way as getPosts()
+    //    TODO: update query for formatted timestamp the same way as getPosts()
     @Override
     public Post getPostById(int id) {
         Post post = new Post();
