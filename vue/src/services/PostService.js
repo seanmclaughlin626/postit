@@ -7,5 +7,9 @@ const http = axios.create({
 export default{
     getPostList(){
         return http.get('/posts')
+    },
+
+    getPostsByForumId(id){
+        return http.get(`/forums/${id}/posts`)
     }
 }

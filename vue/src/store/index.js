@@ -21,11 +21,16 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     forums: [],
-    posts: []
+    posts: [],
+    currentForumPosts: []
   },
   mutations: {
     SET_POSTS(state, data){
       state.posts = data;
+    },
+
+    SET_CURRENT_FORUM_POSTS(state, data){
+      state.currentForumPosts = data;
     },
 
     SET_FORUMS(state, data){
