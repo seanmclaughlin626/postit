@@ -14,11 +14,7 @@ public class Post {
    private String content;
    private int upvoteScore;
    private LocalDateTime timeCreated;
-//    DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-//    private String timeCreatedFormatted = timeCreated.format(formatTime);
-//    TODO figure out why getting posts fails with the formatted version^
-
-
+   private String timeFormatted;
 
    public Post(){}
 
@@ -85,6 +81,14 @@ public class Post {
    public int getForumId() {
        return forumId;
    }
+
+    public String getTimeFormatted() {
+        return timeFormatted;
+    }
+
+    public void setTimeFormatted(String timeFormatted) {
+        this.timeFormatted = timeFormatted;
+    }
 }
 
 

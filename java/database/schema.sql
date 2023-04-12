@@ -25,7 +25,8 @@ CREATE TABLE posts (
 	image_url varchar (2048),
 	upvotes int DEFAULT 0,
 	downvotes int DEFAULT 0,
-	time_created timestamp,
+	time_created timestamp DEFAULT now(),
+	time_formatted varchar(300) DEFAULT to_char(current_timestamp, 'MM-DD-YYYY HH12:MI:SS AM'),
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_post FOREIGN KEY(author_id) REFERENCES users(user_id)
 );

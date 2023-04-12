@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1 v-for= "post in this.popularPosts()" v-bind:key="post.postId">{{post.title}}</h1>
+    <h1 v-for= "post in this.$store.state.posts" v-bind:key="post.postId">{{post.title}}</h1>
 </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   name: "popular-posts",
   methods: {
     getPosts() {
-      postService.getAllPosts().then((response) => {
+      postService.getPostList().then((response) => {
         this.$store.commit("SET_POSTS", response.data);
       });
     },
