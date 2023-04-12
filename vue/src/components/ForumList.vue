@@ -1,6 +1,6 @@
 <template>
   <div>
-      <ul v-for="forum in $store.state.forums" v-bind:key="forum.id">
+      <ul v-for="forum in recentForumInteractions" v-bind:key="forum.id">
           <li>{{forum.name}}</li>
       </ul>
   </div>
@@ -15,9 +15,17 @@ export default {
             ForumService.getForumList().then(response => {
                 this.$store.commit("SET_FORUMS", response.data);
             })
-        },
-
-        
+        }
+    },
+    computed: {
+        recentForumInteractions(){
+        let topFiveForums = this.$store.state.forums;
+        if(topFiveForums.length > 5){
+        return topFiveForums.slice(0,5);
+        } else {
+            return topFiveForums;
+        }
+    }
     },
     created(){
         this.getForumsList();

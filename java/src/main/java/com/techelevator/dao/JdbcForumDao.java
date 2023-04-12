@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class JdbcForumDao implements ForumDao{
     @Override
     public List<Forum> getForums(){
         List<Forum> results = new ArrayList<>();
-        String sql = "SELECT forum_id, forum_name FROM forums";
+        String sql = "SELECT forum_id, forum_name, last_interaction FROM forums ORDER BY last_interaction DESC";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while(rowSet.next()){
             results.add(mapRowToForum(rowSet));
@@ -32,7 +33,7 @@ public class JdbcForumDao implements ForumDao{
     @Override
     public Forum getForumById(int id){
         Forum results = new Forum();
-        String sql = "SELECT forum_id, forum_name FROM forums WHERE forum_id = ?";
+        String sql = "SELECT forum_id, forum_name FROM forums, last_interaction WHERE forum_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
         if(rowSet.next()){
             results = mapRowToForum(rowSet);
@@ -51,6 +52,8 @@ public class JdbcForumDao implements ForumDao{
         Forum forum = new Forum();
         forum.setId(rowSet.getInt("forum_id"));
         forum.setName(rowSet.getString("forum_name"));
+        Timestamp timestamp = rowSet.getTimestamp("last_interaction");
+        forum.setLastInteraction(timestamp.toLocalDateTime());
         return forum;
     }
 }

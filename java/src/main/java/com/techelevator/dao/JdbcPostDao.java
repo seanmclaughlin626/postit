@@ -64,6 +64,9 @@ public class JdbcPostDao implements PostDao{
     public void createPost(Post post) {
         String sql = "INSERT INTO posts (author_id, title, content, forum_id) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent(), post.getForumId());
+
+        String updateSql = "UPDATE forums SET last_interaction = now() WHERE forum_id = ?";
+        jdbcTemplate.update(updateSql, post.getForumId());
     }
 
     private Post mapRowToPost(SqlRowSet results){

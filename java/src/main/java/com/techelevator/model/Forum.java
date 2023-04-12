@@ -1,8 +1,12 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Forum {
     private int id;
     private String name;
+    private LocalDateTime lastInteraction;
 
     public Forum() {
     }
@@ -26,5 +30,13 @@ public class Forum {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDateTime getLastInteraction() {
+        return lastInteraction;
+    }
+
+    public void setLastInteraction(LocalDateTime lastInteraction) {
+        this.lastInteraction = lastInteraction;
     }
 }

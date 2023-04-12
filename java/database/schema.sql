@@ -13,6 +13,7 @@ CREATE TABLE users (
 CREATE TABLE forums (
 	forum_id SERIAL,
 	forum_name varchar(50) NOT NULL UNIQUE,
+	last_interaction timestamp DEFAULT now(),
 	CONSTRAINT PK_forum PRIMARY KEY (forum_id)
 );
 
@@ -27,6 +28,7 @@ CREATE TABLE posts (
 	downvotes int DEFAULT 0,
 	time_created timestamp DEFAULT now(),
 	time_formatted varchar(300) DEFAULT to_char(current_timestamp, 'MM-DD-YYYY HH12:MI:SS AM'),
+	last_interaction timestamp DEFAULT now(),
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_post FOREIGN KEY(author_id) REFERENCES users(user_id)
 );
@@ -36,7 +38,7 @@ CREATE TABLE comments (
 	author_id int,
 	post_id int,
 	content varchar(10000),
-	time_created timestamp,
+	time_created timestamp DEFAULT now(),
 	CONSTRAINT PK_comment PRIMARY KEY (comment_id),
 	CONSTRAINT FK_author FOREIGN KEY (author_id) REFERENCES users(user_id),
 	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id)
