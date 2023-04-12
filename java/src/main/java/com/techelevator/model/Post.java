@@ -5,90 +5,90 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.sql.Timestamp;
 
 public class Post {
-    private int postId;
-    private int forumId;
-    private int author;
-    private String title;
-    private String content;
-    private int upvoteScore;
-    private LocalDateTime timeCreated;
-    DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
-    private String timeCreatedFormatted = timeCreated.format(formatTime);
+   private int postId;
+   private int forumId;
+   private int author;
+   private String title;
+   private String content;
+   private int upvoteScore;
+   private LocalDateTime timeCreated;
+//    DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
+//    private String timeCreatedFormatted = timeCreated.format(formatTime);
+//    TODO figure out why getting posts fails with the formatted version^
 
-    public Post(){}
 
-    public Post(int postId, int author, String title, String content, int upvoteScore) {
-        this.postId = postId;
-        this.author = author;
-        this.title = title;
-        this.content = content;
-        this.upvoteScore = upvoteScore;
-    }
 
-    public int getPostId() {
-        return postId;
-    }
+   public Post(){}
 
-    public void setPostId(int postId) {
-        this.postId = postId;
-    }
+   public Post(int postId, int author, String title, String content, int upvoteScore) {
+       this.postId = postId;
+       this.author = author;
+       this.title = title;
+       this.content = content;
+       this.upvoteScore = upvoteScore;
+   }
 
-    public int getAuthor() {
-        return author;
-    }
+   public int getPostId() {
+       return postId;
+   }
 
-    public void setAuthor(int author) {
-        this.author = author;
-    }
+   public void setPostId(int postId) {
+       this.postId = postId;
+   }
 
-    public String getTitle() {
-        return title;
-    }
+   public int getAuthor() {
+       return author;
+   }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+   public void setAuthor(int author) {
+       this.author = author;
+   }
 
-    public String getContent() {
-        return content;
-    }
+   public String getTitle() {
+       return title;
+   }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+   public void setTitle(String title) {
+       this.title = title;
+   }
 
-    public int getUpvoteScore() {
-        return upvoteScore;
-    }
+   public String getContent() {
+       return content;
+   }
 
-    public void setUpvoteScore(int upvoteScore) {
-        this.upvoteScore = upvoteScore;
-    }
+   public void setContent(String content) {
+       this.content = content;
+   }
 
-    public LocalDateTime getTimeCreated() {
-        return timeCreated;
-    }
+   public int getUpvoteScore() {
+       return upvoteScore;
+   }
 
-    public String getTimeCreatedFormatted() {
-        return timeCreatedFormatted;
-    }
+   public void setUpvoteScore(int upvoteScore) {
+       this.upvoteScore = upvoteScore;
+   }
 
-    public void setForumId(int forumId) {
-        this.forumId = forumId;
-    }
+   public LocalDateTime getTimeCreated() {
+       return timeCreated;
+   }
 
-    public void setTimeCreated(LocalDateTime timeCreated) {
-        this.timeCreated = timeCreated;
-    }
+   public void setForumId(int forumId) {
+       this.forumId = forumId;
+   }
 
-    public void setTimeCreatedFormatted(String timeCreatedFormatted) {
-        this.timeCreatedFormatted = timeCreatedFormatted;
-    }
+   public void setTimeCreated(LocalDateTime timeCreated) {
+       this.timeCreated = timeCreated;
+   }
 
-    public int getForumId() {
-        return forumId;
-    }
+   public int getForumId() {
+       return forumId;
+   }
 }
+
+
+
+
+
+
