@@ -72,7 +72,7 @@ public class JdbcPostDao implements PostDao{
         post.setPostId(results.getInt("post_id"));
         post.setContent(results.getString("content"));
         post.setAuthor(results.getInt("author_id"));
-        int upvoteScore = results.getInt("upvotes") + results.getInt("downvotes");
+        int upvoteScore = results.getInt("upvotes") - results.getInt("downvotes");
         post.setUpvoteScore(upvoteScore);
         Timestamp timestamp = results.getTimestamp("time_created");
         post.setTimeFormatted(results.getString("time_formatted"));

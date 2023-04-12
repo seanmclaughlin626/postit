@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1 v-for= "post in this.$store.state.posts" v-bind:key="post.postId">{{post.title}}</h1>
+    <h1 v-for= "post in popularPosts" v-bind:key="post.postId">{{post.upvoteScore}}</h1>
 </div>
 </template>
 
@@ -10,6 +10,7 @@ import postService from '../services/PostService';
 export default {
 
   name: "popular-posts",
+
   methods: {
     getPosts() {
       postService.getPostList().then((response) => {
@@ -20,14 +21,18 @@ export default {
 
   computed: {
     recentPosts(){
-      let yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-      return this.$store.posts.filter((post) => {
-        return post.timeCreated >= yesterday; 
+      let yesterday = new Date();
+      yesterday.setHours(yesterday.getHours() - 24);
+      let array = this.$store.state.posts.filter((post) => {
+        let postDate = new Date(post.timeCreated);
+        return postDate.getTime() >= yesterday.getTime();
       })
+      return array;
     },
     popularPosts(){
-        let orderedPosts = this.recentPosts().sort((post1, post2) => {
-            return post1.upvoteScore > post2.upvoteScore ? 1 : post2.upvoteScore > post1.upvoteScore ? -1 : 0;
+        let recentPosts = this.recentPosts;
+        let orderedPosts = recentPosts.sort((post1, post2) => {
+            return post1.upvoteScore > post2.upvoteScore ? -1 : post2.upvoteScore > post1.upvoteScore ? 1 : 0;
         })
         if(orderedPosts.length > 10){
         return orderedPosts.slice(0,10);
