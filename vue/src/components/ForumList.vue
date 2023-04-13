@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h4>Recently Active Forums</h4>
       <ul v-for="forum in recentForumInteractions" v-bind:key="forum.id">
           <router-link v-bind:to="{name: 'forum', params:{id: forum.id}}">{{forum.name}}</router-link>
       </ul>
@@ -34,7 +35,7 @@ export default {
 </script>
 
 <style>
-ul{
+ul, h4{
     border-bottom: 1px solid darkgray;
 }
 </style>

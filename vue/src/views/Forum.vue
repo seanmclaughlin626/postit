@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 id="forum-name">{{forum.name}}</h1>
     <posts-in-forum v-bind:forum="forum"/>
   </div>
 </template>
@@ -34,5 +35,7 @@ export default {
 </script>
 
 <style>
-
+#forum-name{
+  text-align: center;
+}
 </style>
