@@ -5,24 +5,23 @@
       <button v-on:click="displayByPopular = false">Most Recent</button>
     </div>
     <div v-show="!displayByPopular">
-      <ul v-for="post in recentPosts" v-bind:key="post.id">
-        <li>{{post.title}}</li>
-      </ul>
+      <post v-for="post in recentPosts" v-bind:key="post.id" v-bind:post="post"/>
     </div>
     <div v-show="displayByPopular">
-      <ul v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id">
-        <li>{{post.title}}</li>
-      </ul>
+      <post v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" v-bind:post="post"/>
     </div>
   </div>
 </template>
 
 <script>
 import postService from '../services/PostService';
+import Post from './Post.vue';
+
 
 export default {
 name: 'posts-in-forum',
 props: {forum: Object},
+components: {Post},
 computed: {
 
   recentPosts(){
