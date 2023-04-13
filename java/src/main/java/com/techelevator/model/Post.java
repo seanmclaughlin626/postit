@@ -15,6 +15,7 @@ public class Post {
    private int upvoteScore;
    private LocalDateTime timeCreated;
    private String timeFormatted;
+   private LocalDateTime lastInteraction;
 
    public Post(){}
 
@@ -88,6 +89,14 @@ public class Post {
 
     public void setTimeFormatted(String timeFormatted) {
         this.timeFormatted = timeFormatted;
+    }
+
+    public LocalDateTime getLastInteraction() {
+        return lastInteraction;
+    }
+
+    public void setLastInteraction(LocalDateTime lastInteraction) {
+        this.lastInteraction = lastInteraction;
     }
 }
 

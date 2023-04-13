@@ -24,7 +24,7 @@ export default {
       let yesterday = new Date();
       yesterday.setHours(yesterday.getHours() - 24);
       let array = this.$store.state.posts.filter((post) => {
-        let postDate = new Date(post.timeCreated);
+        let postDate = new Date(post.lastInteraction);
         return postDate.getTime() >= yesterday.getTime();
       })
       return array;

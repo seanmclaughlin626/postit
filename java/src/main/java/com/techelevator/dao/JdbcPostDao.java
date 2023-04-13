@@ -24,7 +24,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public List<Post> getPosts() {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content, time_created, time_formatted FROM posts";
+        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content, time_created, time_formatted, last_interaction FROM posts";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while(result.next()){
             Post post = new Post();
@@ -80,6 +80,8 @@ public class JdbcPostDao implements PostDao{
         Timestamp timestamp = results.getTimestamp("time_created");
         post.setTimeFormatted(results.getString("time_formatted"));
         post.setTimeCreated(timestamp.toLocalDateTime());
+        Timestamp lastInteractionTimestamp = results.getTimestamp("time_created");
+        post.setLastInteraction(lastInteractionTimestamp.toLocalDateTime());
         return post;
     }
 
