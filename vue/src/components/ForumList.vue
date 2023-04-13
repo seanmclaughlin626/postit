@@ -1,7 +1,7 @@
 <template>
   <div>
       <ul v-for="forum in recentForumInteractions" v-bind:key="forum.id">
-          <li>{{forum.name}}</li>
+          <router-link v-bind:to="{name: 'forum', params:{id: forum.id}}">{{forum.name}}</router-link>
       </ul>
   </div>
 </template>

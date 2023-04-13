@@ -1,22 +1,24 @@
 <template>
 <div>
-    <h1 v-for= "post in popularPosts" v-bind:key="post.postId">{{post.upvoteScore}}</h1>
+    <post v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:post="post"/>
 </div>
 </template>
 
 <script>
 import postService from '../services/PostService';
+import Post from './Post.vue';
 
 export default {
-
   name: "popular-posts",
-
+  components: {
+    Post
+  },
   methods: {
     getPosts() {
       postService.getPostList().then((response) => {
         this.$store.commit("SET_POSTS", response.data);
       });
-    },
+    }
   },
 
   computed: {
