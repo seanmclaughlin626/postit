@@ -2,7 +2,7 @@
     <div class="postCard">
         <h1>{{post.title}}</h1>
         <p>{{post.content}}</p>
-        <p><i>Postedin <router-link v-bind:to="{name: 'forum', params: {id: this.post.forumId}}">{{forumName}}</router-link> by {{post.authorName}} on {{post.timeFormatted}}</i></p>
+        <p><i>Posted in <router-link v-bind:to="{name: 'forum', params: {id: this.post.forumId}}">{{forumName}}</router-link> by {{post.authorName}} on {{post.timeFormatted}}</i></p>
     </div>
 </template>
 

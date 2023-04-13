@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.PostDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Post;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -37,4 +38,7 @@ public class PostController {
     public void createPost(@RequestBody Post post){
         postDao.createPost(post);
     }
+
+
+
 }

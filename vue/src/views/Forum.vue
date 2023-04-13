@@ -1,18 +1,22 @@
 <template>
   <div>
     <h1 id="forum-name">{{forum.name}}</h1>
+    <create-post :forumId="parseInt(this.$route.params.id)"/>
     <posts-in-forum v-bind:forum="forum"/>
   </div>
 </template>
 
 <script>
+import CreatePost from '../components/CreatePost.vue';
 import PostsInForum from '../components/PostsInForum.vue';
 import ForumService from '../services/ForumService';
+
 
 export default {
     name: "forum",
     components: {
-      PostsInForum
+      PostsInForum,
+      CreatePost
     },
     computed: {
       forum(){

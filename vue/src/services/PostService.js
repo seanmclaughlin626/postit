@@ -11,5 +11,9 @@ export default{
 
     getPostsByForumId(id){
         return http.get(`/forums/${id}/posts`)
+    },
+
+    createPost(post){
+        return http.post('/posts', post)
     }
 }
