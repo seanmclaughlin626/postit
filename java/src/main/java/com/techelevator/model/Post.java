@@ -16,6 +16,7 @@ public class Post {
    private LocalDateTime timeCreated;
    private String timeFormatted;
    private LocalDateTime lastInteraction;
+   private String authorName;
 
    public Post(){}
 
@@ -97,6 +98,14 @@ public class Post {
 
     public void setLastInteraction(LocalDateTime lastInteraction) {
         this.lastInteraction = lastInteraction;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }
 

@@ -1,5 +1,6 @@
 <template>
 <div>
+    <h3>Popular posts</h3>
     <post v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:post="post"/>
 </div>
 </template>

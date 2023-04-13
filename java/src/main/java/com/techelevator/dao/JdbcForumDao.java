@@ -33,7 +33,7 @@ public class JdbcForumDao implements ForumDao{
     @Override
     public Forum getForumById(int id){
         Forum results = new Forum();
-        String sql = "SELECT forum_id, forum_name FROM forums, last_interaction WHERE forum_id = ?";
+        String sql = "SELECT forum_id, forum_name, last_interaction FROM forums WHERE forum_id = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
         if(rowSet.next()){
             results = mapRowToForum(rowSet);
