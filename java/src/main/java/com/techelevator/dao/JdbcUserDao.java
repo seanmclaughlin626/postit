@@ -84,7 +84,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<String> getUsersBySearchQuery(String search) {
         List<String> userList = new ArrayList<>();
-        String sql = "SELECT username FROM users WHERE username LIKE '%?%'";
+        String sql = "SELECT username FROM users WHERE username ILIKE '%?%'";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, search);
         while (rowSet.next()) {
             userList.add(rowSet.getString("username"));
