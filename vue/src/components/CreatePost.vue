@@ -6,7 +6,7 @@
           <br/>
           <label for="content">Content:</label>
           <textarea name="content" id="content" cols="30" rows="10" v-model="post.content"></textarea>
-          <button type="submit">Submit</button>
+          <button type="submit">Post It!</button>
       </form>
   </div>
 </template>

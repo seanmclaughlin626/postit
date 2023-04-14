@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.Post;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class PostController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping (path = "/posts", method = RequestMethod.POST)
     public void createPost(@RequestBody Post post){
         postDao.createPost(post);

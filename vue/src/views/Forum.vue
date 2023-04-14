@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 id="forum-name">{{forum.name}}</h1>
-    <create-post :forumId="parseInt(this.$route.params.id)"/>
+    <button v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</button>
+    <create-post :forumId="parseInt(this.$route.params.id)" v-show="creatingPost"/>
     <posts-in-forum v-bind:forum="forum"/>
   </div>
 </template>
@@ -17,6 +18,11 @@ export default {
     components: {
       PostsInForum,
       CreatePost
+    },
+    data(){
+      return {
+      creatingPost: false
+      }
     },
     computed: {
       forum(){

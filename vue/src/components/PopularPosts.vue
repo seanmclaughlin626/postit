@@ -40,7 +40,7 @@ export default {
         if(orderedPosts.length > 10){
         return orderedPosts.slice(0,10);
         } else {
-            return orderedPosts.slice(0, orderedPosts.length);
+            return orderedPosts;
         }
     }
   },

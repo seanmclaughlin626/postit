@@ -2,9 +2,12 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ForumDao;
 import com.techelevator.model.Forum;
+import com.techelevator.services.ForumService;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -12,9 +15,11 @@ import java.util.List;
 public class ForumController {
 
     private ForumDao forumDao;
+    private final ForumService forumService;
 
-    public ForumController(ForumDao forumDao) {
+    public ForumController(ForumDao forumDao, ForumService forumService) {
         this.forumDao = forumDao;
+        this.forumService = forumService;
     }
 
     @GetMapping("/forums")
@@ -29,7 +34,8 @@ public class ForumController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/forums")
-    public boolean createForumController(@RequestBody Forum forum){
-        return forumDao.createForum(forum);
+    @ResponseStatus(HttpStatus.CREATED)
+    public int createForumController(@RequestBody Forum forum, Principal principal){
+        return forumService.createForumService(forum, principal.getName());
     }
 }

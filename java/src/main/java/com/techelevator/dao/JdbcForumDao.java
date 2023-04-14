@@ -1,11 +1,13 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Forum;
+import com.techelevator.services.ForumService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +44,15 @@ public class JdbcForumDao implements ForumDao{
     }
 
     @Override
-    public boolean createForum(Forum forum){
-        String insertUserSql = "INSERT INTO forums (forum_name) values (?)";
+    public int createForum(Forum forum, int id){
+        int newId = 0;
+        String insertUserSql = "INSERT INTO forums (forum_name) values (?) RETURNING forum_id";
+        newId = jdbcTemplate.queryForObject(insertUserSql, int.class, forum.getName());
 
-        return jdbcTemplate.update(insertUserSql, forum.getName()) == 1;
+        String makeSelfModSql = "INSERT INTO forum_moderators (forum_id, mod_id) VALUES (?, ?)";
+        jdbcTemplate.update(makeSelfModSql, newId, id);
+
+        return newId;
     }
 
     private Forum mapRowToForum(SqlRowSet rowSet){

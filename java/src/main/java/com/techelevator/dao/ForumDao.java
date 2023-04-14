@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Forum;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface ForumDao {
@@ -9,5 +10,5 @@ public interface ForumDao {
 
     Forum getForumById(int id);
 
-    boolean createForum(Forum forum);
+    int createForum(Forum forum, int id);
 }
