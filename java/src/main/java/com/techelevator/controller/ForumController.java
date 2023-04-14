@@ -32,6 +32,11 @@ public class ForumController {
         return forumDao.getForumById(id);
     }
 
+    @GetMapping("/forums/{forumId}/mods")
+    public List<Integer> getModIdsByForumIdControl(@PathVariable int forumId){
+        return forumDao.getModIdsByForumId(forumId);
+    }
+
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/forums")
     @ResponseStatus(HttpStatus.CREATED)

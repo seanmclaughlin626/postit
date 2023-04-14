@@ -55,6 +55,17 @@ public class JdbcForumDao implements ForumDao{
         return newId;
     }
 
+    @Override
+    public List<Integer> getModIdsByForumId(int forumId){
+        List<Integer> modList = new ArrayList<>();
+        String sql = "SELECT mod_id FROM forum_moderators WHERE forum_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, forumId);
+        while(result.next()){
+            modList.add(result.getInt("mod_id"));
+        }
+        return modList;
+    }
+
     private Forum mapRowToForum(SqlRowSet rowSet){
         Forum forum = new Forum();
         forum.setId(rowSet.getInt("forum_id"));

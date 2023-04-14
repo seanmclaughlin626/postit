@@ -11,4 +11,6 @@ public interface ForumDao {
     Forum getForumById(int id);
 
     int createForum(Forum forum, int id);
+
+    List<Integer> getModIdsByForumId(int forumId);
 }

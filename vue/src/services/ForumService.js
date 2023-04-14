@@ -13,6 +13,9 @@ export default {
     getForum(id){
         return http.get(`/forums/${id}`);
     },
+    getMods(id){
+        return http.get(`/forums/${id}/mods`)
+    },
     createForum(forum){
         return http.post('/forums', forum);
     }
