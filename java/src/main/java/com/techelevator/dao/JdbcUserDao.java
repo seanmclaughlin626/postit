@@ -81,6 +81,16 @@ public class JdbcUserDao implements UserDao {
 
         return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
     }
+    @Override
+    public List<String> getUsersBySearchQuery(String search) {
+        List<String> userList = new ArrayList<>();
+        String sql = "SELECT username FROM users WHERE username LIKE '%?%'";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, search);
+        while (rowSet.next()) {
+            userList.add(rowSet.getString("username"));
+        }
+        return userList;
+    }
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

@@ -18,5 +18,8 @@ export default {
     },
     createForum(forum){
         return http.post('/forums', forum);
+    },
+    promoteUserToMod(id, user){
+        return http.post(`/forums/${id}/mods`, user)
     }
 }

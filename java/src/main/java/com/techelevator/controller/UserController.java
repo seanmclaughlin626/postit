@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,4 +25,9 @@ public class UserController {
     public int getUserIdByUsername(Principal principal){
        return userDao.findIdByUsername(principal.getName());
    }
+
+    @GetMapping("/search-users")
+    public List<String> getUsersBySearchQueryController(String search){
+        return userDao.getUsersBySearchQuery(search);
+    }
 }

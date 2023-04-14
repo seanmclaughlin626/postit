@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     forums: [],
     posts: [],
-    currentForumPosts: []
+    currentForumPosts: [],
+    searchUserList: []
   },
   mutations: {
     SET_POSTS(state, data){

@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Forum;
+import com.techelevator.model.User;
 import com.techelevator.services.ForumService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -64,6 +65,12 @@ public class JdbcForumDao implements ForumDao{
             modList.add(result.getInt("mod_id"));
         }
         return modList;
+    }
+
+    @Override
+    public void promoteUserToMod(int userId, int forumId){
+        String sql = "INSERT INTO forum_moderators (forum_id, mod_id) VALUES (?, ?)";
+        jdbcTemplate.update(sql, forumId, userId);
     }
 
     private Forum mapRowToForum(SqlRowSet rowSet){
