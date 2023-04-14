@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.ForumDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Search;
+import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +21,12 @@ public class UserController {
 
    @PreAuthorize("isAuthenticated()")
    @GetMapping("/creator")
-    public int getUserIdByUsername(Principal principal){
+    public int getMyUserIdByUsername(Principal principal){
        return userDao.findIdByUsername(principal.getName());
    }
 
     @GetMapping("/search-users")
-    public List<String> getUsersBySearchQueryController(@RequestBody Search search){
-        return userDao.getUsersBySearchQuery(search.getSearchInput());
+    public List<String> getUsersBySearchQueryController(@RequestParam("searchInput") String search){
+        return userDao.getUsersBySearchQuery(search);
     }
 }

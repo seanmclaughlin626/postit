@@ -47,6 +47,6 @@ public class ForumController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/forums/{forumId}/mods")
     public void promoteUserToModController(@RequestBody User user, @PathVariable int forumId){
-        forumDao.promoteUserToMod(user.getId(), forumId);
+        forumService.promoteUserToMod(user.getUsername(), forumId);
     }
 }

@@ -9,6 +9,7 @@ const http = axios.create({
         },
 
         userSearch(search){
-            return http.get('/search-user', search)
-        },
+            console.log(search)
+            return http.get('/search-users', {params: {searchInput: search.searchInput}})
+        }
     }

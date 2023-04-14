@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -84,8 +85,8 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<String> getUsersBySearchQuery(String search) {
         List<String> userList = new ArrayList<>();
-        String sql = "SELECT username FROM users WHERE username ILIKE '%?%'";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, search);
+        String sql = "SELECT username FROM users WHERE LOWER(username) ILIKE '%'||?||'%'";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, search.toLowerCase());
         while (rowSet.next()) {
             userList.add(rowSet.getString("username"));
         }

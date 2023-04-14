@@ -21,12 +21,11 @@ export default {
     createForum() {
       forumService.createForum(this.forum).then((response) => {
         if (response.status === 201) {
-          location.reload();
- //   TODO: ROUTE TO NEWLY CREATED FORUM PAGE
+          this.$router.push({name: 'forum', params: {id: response.data}})
         }
       });
     },
-  },
+  }
 };
 </script>
 

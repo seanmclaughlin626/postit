@@ -47,6 +47,9 @@ export default new Vuex.Store({
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
     },
+    SET_USER_SEARCH_RESULTS(state, data){
+      state.searchUserList = data;
+    },
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');

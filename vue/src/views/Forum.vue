@@ -50,7 +50,6 @@ export default {
       checkModStatus(){
         ForumService.getMods(this.$route.params.id).then((response) => {
           let modArray = response.data;
-          console.log(modArray.includes(this.$store.state.user.id));
          if(modArray.includes(this.$store.state.user.id)){
            this.currentUserIsMod = true;
          } else {

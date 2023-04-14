@@ -19,4 +19,9 @@ public class ForumService {
         int id = userDao.findIdByUsername(username);
         return forumDao.createForum(forum, id);
     }
+
+    public void promoteUserToMod(String username, int forumId){
+        int userId = userDao.findIdByUsername(username);
+        forumDao.promoteUserToMod(userId, forumId);
+    }
 }
