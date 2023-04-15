@@ -6,11 +6,13 @@
       <input name="search-user" type="text" v-model="search.searchInput" />
       <b-button style="background-color: #60233f; margin-left: 1rem;" type="submit">Search</b-button>
     </form>
-    <ul>
+    <div class="search-list">
+    <ul class="user-list">
         <li v-for="(username, index) in $store.state.searchUserList" v-bind:key="index">
             <p>{{username}} <button v-on:click="promoteUser(username)">Promote to Mod</button></p>
         </li>
     </ul>
+    </div>
   </div>
 </template>
 
@@ -58,5 +60,38 @@ export default {
   border: 2px #60233f solid;
   display: block;
 }
+.search-list {
+  color: #555;
+  font-size: 22px;
+  padding: 0 !important;
+  width: 500px;
+  font-family: courier, monospace;
+  border: 1px solid #dedede;
+  
+}
+
+.user-list{
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  text-indent: 25px;
+  height: auto;
+  padding: 10px;
+  text-transform: capitalize;
+  background-color: #f5f5f5;
+  width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+.user-list li{
+  color: #555;
+  font-size: 22px;
+  padding: 0 !important;
+  width: 100%;
+  font-family: courier, monospace;
+  border: 1px solid #dedede;
+}
+
+
+
 </style>
 

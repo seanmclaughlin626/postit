@@ -1,5 +1,5 @@
 <template>
-  <div class="lines">
+  <div>
     <h4><b>Recently Active Forums</b></h4>
     <ul
       class="forum-list"
