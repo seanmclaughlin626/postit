@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .forum-creation {
   color: white;
-  background-color: #a46434;
+  background-image: linear-gradient(to right, #a46434, #60233f);
   padding: 0.5rem;
   border: 2px #60233f solid;
   display: block;

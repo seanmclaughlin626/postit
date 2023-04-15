@@ -9,7 +9,7 @@
     <div class="search-list">
     <ul class="user-list">
         <li v-for="(username, index) in $store.state.searchUserList" v-bind:key="index">
-            <p>{{username}} <button v-on:click="promoteUser(username)">Promote to Mod</button></p>
+            <p>{{username}} <b-button style="background-color: #60233f; margin-left: 0.5rem; margin-top: 0.5rem;" v-on:click="promoteUser(username)">Promote to Mod</b-button></p>
         </li>
     </ul>
     </div>
@@ -55,7 +55,7 @@ export default {
 <style>
 .mod-search {
   color: white;
-  background-color: #a46434;
+  background-image: linear-gradient(to right, #a46434, #60233f);
   padding: 0.5rem;
   border: 2px #60233f solid;
   display: block;
