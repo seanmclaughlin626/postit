@@ -1,6 +1,6 @@
 <template>
   <div class="lines">
-    <h4>Recently Active Forums</h4>
+    <h4><b>Recently Active Forums</b></h4>
     <ul
       class="forum-list"
       v-for="forum in recentForumInteractions"

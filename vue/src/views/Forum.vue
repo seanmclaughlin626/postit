@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button v-on:click="modView = !modView" v-show="currentUserIsMod">Moderator Page</button>
+    <b-button style="background-color: #60233f; margin-top: 0.2rem; width: 100%" v-on:click="modView = !modView" v-show="currentUserIsMod">Moderator Page</b-button>
     <div id="modview" v-show="modView">
       <mod-view/>
     </div>
     <div id="main-forum-view" v-show="!modView">
     <h1 id="forum-name">{{forum.name}}</h1>
-    <button v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</button>
+    <b-button style="background-color: #60233f;" v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</b-button>
     <create-post :forumId="parseInt(this.$route.params.id)" v-show="creatingPost"/>
     <posts-in-forum v-bind:forum="forum"/>
     </div>

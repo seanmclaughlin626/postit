@@ -1,7 +1,10 @@
 <template>
 <div>
     <h3>Popular posts</h3>
-    <post v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:post="post"/>
+    <div class="list">
+         <post v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:post="post"/>
+    </div>
+ 
 </div>
 </template>
 
@@ -51,5 +54,15 @@ export default {
 </script>
 
 <style scoped>
+
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list post{
+  margin:1em;
+}
 
 </style>

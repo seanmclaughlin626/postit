@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="buttons">
-      <button v-on:click="displayByPopular = true">Most Popular</button>
-      <button v-on:click="displayByPopular = false">Most Recent</button>
+      <b-button style="margin-top: 0.2rem; margin-right: 0.1rem; background-color: #60233f;" v-on:click="displayByPopular = true">Most Popular</b-button>
+      <b-button style="margin-top: 0.2rem; margin-left: 0.1rem; background-color: #60233f;" v-on:click="displayByPopular = false">Most Recent</b-button>
     </div>
-    <div v-show="!displayByPopular">
+    <div v-show="!displayByPopular" class="list">
       <post v-for="post in recentPosts" v-bind:key="post.id" v-bind:post="post"/>
     </div>
-    <div v-show="displayByPopular">
+    <div v-show="displayByPopular" class="list">
       <post v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" v-bind:post="post"/>
     </div>
   </div>
@@ -55,4 +55,13 @@ data() {
 </script>
 
 <style>
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list post{
+  margin:1em;
+}
 </style>
