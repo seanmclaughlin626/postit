@@ -14,12 +14,12 @@ export default {
         return http.get(`/forums/${id}`);
     },
     getMods(id){
-        return http.get(`/forums/${id}/mods`)
+        return http.get(`/forums/${id}/mods`);
     },
     createForum(forum){
         return http.post('/forums', forum);
     },
     promoteUserToMod(id, user){
-        return http.post(`/forums/${id}/mods`, user)
+        return http.post(`/forums/${id}/mods`, user);
     }
 }

@@ -38,7 +38,7 @@ export default {
       },
       promoteUser(username){
           this.userToPromote.username = username;
-          forumService.promoteUserToMod(this.userToPromote).then((response) => {
+          forumService.promoteUserToMod(this.$route.params.id, this.userToPromote).then((response) => {
               if(response.status == 201){
                   location.reload();
               }

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <form v-on:submit.prevent="addPost">
+      <form v-on:submit="addPost">
           <label for="title">Title:</label>
           <input id="title" type="text" v-model="post.title">
           <br/>
@@ -35,7 +35,8 @@ export default {
             this.post.author = this.$store.state.user.id;
             PostService.createPost(this.post).then(response => {
                 if(response.status === 201){
-                  location.reload()
+                  console.log("Post created!");
+                //   TODO bootstrap alert instead of log
                 }
             })
         },
