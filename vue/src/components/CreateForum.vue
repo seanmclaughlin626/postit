@@ -23,6 +23,7 @@ export default {
         if (response.status === 201) {
           this.$router.push({name: 'forum', params: {id: response.data}})
         }
+        // TODO create alert messsage when a forum is created // if the forum name exists
       });
     },
   }
