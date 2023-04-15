@@ -1,9 +1,10 @@
 <template>
   <div>
-    <form v-on:submit.prevent="searchUsers">
+    <form class="mod-search" v-on:submit.prevent="searchUsers">
       <label for="search-user">Search for a user:  </label>
+      <br>
       <input name="search-user" type="text" v-model="search.searchInput" />
-      <button type="submit">Search</button>
+      <b-button style="background-color: #60233f; margin-left: 1rem;" type="submit">Search</b-button>
     </form>
     <ul>
         <li v-for="(username, index) in $store.state.searchUserList" v-bind:key="index">
@@ -50,5 +51,12 @@ export default {
 </script>
 
 <style>
+.mod-search {
+  color: white;
+  background-color: #a46434;
+  padding: 0.5rem;
+  border: 2px #60233f solid;
+  display: block;
+}
 </style>
 

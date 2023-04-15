@@ -1,12 +1,15 @@
 <template>
   <div>
       <form v-on:submit="addPost">
-          <label for="title">Title:</label>
+          <label for="title">Title:</label> 
+          <br>
           <input id="title" type="text" v-model="post.title">
-          <br/>
+          <br>
           <label for="content">Content:</label>
+          <br>
           <textarea name="content" id="content" cols="30" rows="10" v-model="post.content"></textarea>
-          <button type="submit">Post It!</button>
+          <br>
+          <b-button style="background-color: #60233f;" type="submit">Post It!</b-button>
       </form>
   </div>
 </template>
@@ -53,7 +56,23 @@ export default {
 </script>
 
 
-<style>
-
-
+<style scoped>
+form{
+  color:#000;
+  background:#ffc;
+  display:block;
+  height:20em;
+  width:20em;
+  padding:1em;
+  margin:1em;
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+label{
+      font-weight: bold;
+  font-size: 1.25rem;
+  font-family: courier, monospace;
+}
 </style>

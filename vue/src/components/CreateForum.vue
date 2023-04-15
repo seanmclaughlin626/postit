@@ -2,7 +2,7 @@
   <form v-on:submit.prevent="createForum">
     <label for="name">Forum name: </label>
     <input type="text" name="name" id="name" v-model="forum.name" />
-    <button type="submit">Create it!</button>
+    <b-button style="margin-left: 1rem; background-color: #60233f;" type="submit">Post it!</b-button>
   </form>
 </template>
 
@@ -31,4 +31,7 @@ export default {
 </script>
 
 <style>
+label{
+  margin-right: 1rem;
+}
 </style>
