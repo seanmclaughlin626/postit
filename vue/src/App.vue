@@ -56,6 +56,7 @@
   justify-content: space-evenly;
   border-bottom: 1px solid black;
 }
+
 #login-stuff {
   display: flex;
   width: 33%;

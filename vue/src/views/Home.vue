@@ -28,4 +28,8 @@ export default {
   border: 2px #60233f solid;
   display: block;
 }
+
+.home{
+  padding-bottom: 3rem;
+}
 </style>
