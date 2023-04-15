@@ -17,7 +17,7 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit">Create Account</button>
+      <b-button style="background-color: #60233f;" type="submit">Create Account</b-button>
       <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
@@ -79,5 +79,24 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+form{
+  
+  color:#000;
+  background:#ffc;
+  display:block;
+  height:20em;
+  width:20em;
+  padding:1em;
+  margin:1em;
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+div{
+  display: flex;
+  justify-content: center;
+
 }
 </style>
