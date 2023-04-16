@@ -29,4 +29,14 @@ public class UserController {
     public List<String> getUsersBySearchQueryController(@RequestParam("searchInput") String search){
         return userDao.getUsersBySearchQuery(search);
     }
+
+    @GetMapping("/{forumId}/non-mod-search")
+    public List<String> searchForNonModsControl(@RequestParam("searchInput") String search, @PathVariable int forumId){
+       return userDao.getNonModsBySearchQuery(search, forumId);
+    }
+
+    @GetMapping("/{forumId}/get-mods")
+    public List<String> getModsForForum(@PathVariable int forumId){
+       return userDao.getModUsernamesByForumId(forumId);
+    }
 }

@@ -17,4 +17,8 @@ public interface UserDao {
     boolean create(String username, String password, String role);
 
     List<String> getUsersBySearchQuery(String search);
+
+    List<String> getNonModsBySearchQuery(String search, int forumId);
+
+    List<String> getModUsernamesByForumId(int forumId);
 }

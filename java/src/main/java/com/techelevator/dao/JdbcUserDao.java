@@ -93,6 +93,38 @@ public class JdbcUserDao implements UserDao {
         return userList;
     }
 
+    @Override
+    public List<String> getNonModsBySearchQuery(String search, int forumId) {
+        List<String> userList = new ArrayList<>();
+        String sql = "SELECT username\n" +
+                "FROM users\n" +
+                "WHERE LOWER(username) ILIKE '%'||?||'%' \n" +
+                "AND user_id NOT IN \n" +
+                "(SELECT user_id \n" +
+                " FROM users \n" +
+                " JOIN forum_moderators ON users.user_id = forum_moderators.mod_id\n" +
+                " WHERE forum_id = ?)";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, search.toLowerCase(), forumId);
+        while (rowSet.next()) {
+            userList.add(rowSet.getString("username"));
+        }
+        return userList;
+    }
+
+    @Override
+    public List<String> getModUsernamesByForumId(int forumId){
+        List<String> userList = new ArrayList<>();
+        String sql = " SELECT username\n" +
+                " FROM users\n" +
+                " JOIN forum_moderators ON users.user_id = forum_moderators.mod_id\n" +
+                " WHERE forum_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, forumId);
+        while (rowSet.next()) {
+            userList.add(rowSet.getString("username"));
+        }
+        return userList;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

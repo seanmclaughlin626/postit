@@ -9,7 +9,15 @@ const http = axios.create({
         },
 
         userSearch(search){
-            console.log(search)
             return http.get('/search-users', {params: {searchInput: search.searchInput}})
+        },
+
+        nonModSearch(forumId, search){
+            console.log(search);
+            return http.get(`/${forumId}/non-mod-search`, {params: {searchInput: search.searchInput}})
+        },
+
+        modSearch(forumId){
+            return http.get(`/${forumId}/get-mods`)
         }
     }
