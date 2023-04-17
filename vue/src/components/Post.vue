@@ -1,5 +1,5 @@
 <template>
-  <div class="post-card">
+    <div class="post-card">
       <h2>{{ post.title }}</h2>
       <p>{{ post.content }}</p>
       <p class="signature">
@@ -12,7 +12,7 @@
           by {{ post.authorName }} on {{ post.timeFormatted }}</i
         >
       </p>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -40,18 +40,16 @@ export default {
 </script>
 
 <style scoped>
-/* .postCard{
-        border: 2px solid black;
-    } */
-    body {
+
+body {
   margin: 20px auto;
-  font-family: 'Lato';
-  background:#666;
-  color:#fff;
+  font-family: "Lato";
+  background: #666;
+  color: #fff;
 }
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
 h2 {
   font-weight: bold;
@@ -63,24 +61,24 @@ p {
   font-weight: normal;
   font-family: courier, monospace;
 }
-.post-card{
-  text-decoration:none;
-  color:#000;
-  background:#ffc;
-  display:block;
-  height:20em;
-  width:20em;
-  padding:1em;
-  margin:1em;
-  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+.post-card {
+  text-decoration: none;
+  color: #000;
+  background: #ffc;
+  display: block;
+  height: 20em;
+  width: 20em;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transform: rotate(-0.5deg);
 }
 
-.signature{
-    font-size: 0.85rem;
+.signature {
+  font-size: 0.85rem;
 }
 </style>
 

@@ -44,7 +44,7 @@ import java.util.List;
     @Override
     public boolean createComment(Comment comment) {
             String insertCommentSql = "INSERT INTO comments(author_id, post_id, content) values (?, ?, ?)";
-        return jdbcTemplate.update(insertCommentSql, comment.getAuthorId(), comment.getContent(), comment.getPostId()) == 1;
+        return jdbcTemplate.update(insertCommentSql, comment.getAuthorId(), comment.getPostId(), comment.getContent() ) == 1;
     }
 
     private Comment mapRowToComment(SqlRowSet rowSet){

@@ -5,10 +5,15 @@
       <b-button style="margin-top: 0.2rem; margin-left: 0.1rem; background-color: #60233f;" v-on:click="displayByPopular = false">Most Recent</b-button>
     </div>
     <div v-show="!displayByPopular" class="list">
-      <post v-for="post in recentPosts" v-bind:key="post.id" v-bind:post="post"/>
+      <router-link v-for="post in recentPosts" v-bind:key="post.id" v-bind:to="{name: 'comments', params: {id: post.postId}}">
+        <post  v-bind:post="post"/>
+      </router-link>
+      
     </div>
     <div v-show="displayByPopular" class="list">
-      <post v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" v-bind:post="post"/>
+      <router-link v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" v-bind:to="{name: 'comments', params: {id: post.postId}}">
+        <post  v-bind:post="post"/>
+      </router-link>
     </div>
   </div>
 </template>
@@ -54,7 +59,7 @@ data() {
 }
 </script>
 
-<style>
+<style scoped>
 .list{
   display: flex;
   flex-wrap: wrap;
@@ -63,5 +68,13 @@ data() {
 
 .list post{
   margin:1em;
+}
+
+a:hover,ul li a:focus{
+  transform: scale(1.25);
+  position:relative;
+  z-index:1;
+  transition: transform .15s linear;
+  text-decoration: none;
 }
 </style>

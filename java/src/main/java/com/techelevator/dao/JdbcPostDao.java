@@ -35,11 +35,10 @@ public class JdbcPostDao implements PostDao{
     }
 
 
-    //    TODO: update query for formatted timestamp the same way as getPosts()
     @Override
     public Post getPostById(int id) {
         Post post = new Post();
-        String sql = "SELECT post_id, author_id, title, upvotes, downvotes, content FROM posts WHERE post_id = ?";
+        String sql = "SELECT post_id, p.author_id, forum_id, title, upvotes, downvotes, content, time_created, time_formatted, last_interaction, u.username FROM posts AS p JOIN users AS u ON p.author_id = u.user_id WHERE post_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         if(result.next()){
             post = mapRowToPost(result);

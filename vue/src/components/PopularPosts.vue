@@ -2,10 +2,11 @@
 <div>
     <h3><b>Popular posts</b></h3>
     <div class="list">
-         <post v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:post="post"/>
+      <router-link  v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:to="{name: 'comments', params: {id: post.postId}}">
+        <post   v-bind:post="post"/>
+      </router-link>
+      </div>
     </div>
- 
-</div>
 </template>
 
 <script>
@@ -63,6 +64,14 @@ export default {
 
 .list post{
   margin:1em;
+}
+
+a:hover, a:focus{
+  transform: scale(1.25);
+  position:relative;
+  z-index:1;
+  transition: transform .15s linear;
+  text-decoration: none;
 }
 
 h3{

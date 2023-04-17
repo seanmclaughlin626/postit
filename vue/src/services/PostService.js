@@ -10,6 +10,10 @@ export default{
         return http.get('/posts')
     },
 
+    getPostById(id){
+        return http.get(`/posts/${id}`)
+    },
+
     getPostsByForumId(id){
         return http.get(`/forums/${id}/posts`)
     },
