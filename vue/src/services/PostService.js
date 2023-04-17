@@ -5,8 +5,6 @@ const http = axios.create({
     baseURL: "http://localhost:9000"
 })
 
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.state.token;
-
 export default{
     getPostList(){
         return http.get('/posts')
@@ -17,6 +15,6 @@ export default{
     },
 
     createPost(post){
-        return http.post('/posts', post)
+        return http.post('/posts', post, {headers: {'Authorization': 'Bearer ' + store.state.token}})
     }
 }

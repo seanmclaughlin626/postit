@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <form @submit.prevent="login">
-      <h1 >Please Sign In</h1>
+      <h2><b>Please Sign In</b></h2>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -10,15 +10,26 @@
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <input
+          type="text"
+          id="username"
+          v-model="user.username"
+          required
+          autofocus
+        />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
-      <b-button style="background-color: #60233f;" type="submit">Sign in</b-button>
+      <b-button style="background-color: #60233f" type="submit"
+        >Sign in</b-button
+      >
       <p>
-      <router-link :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+        <router-link :to="{ name: 'register' }"
+          >Need an account? Sign up.</router-link
+        >
+      </p>
     </form>
   </div>
 </template>
@@ -33,31 +44,31 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
 
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -68,23 +79,22 @@ export default {
 label {
   margin-right: 0.5rem;
 }
-form{
-  
-  color:#000;
-  background:#ffc;
-  display:block;
-  height:20em;
-  width:20em;
-  padding:1em;
-  margin:1em;
-  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+form {
+  color: #000;
+  background: #ffc;
+  display: block;
+  height: 20em;
+  width: 20em;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: courier, monospace;
 }
-div{
+div {
   display: flex;
   justify-content: center;
-
 }
 </style>
