@@ -2,7 +2,7 @@
     <div class="post-card">
       <h2>{{ post.title }}</h2>
       <p>{{ post.content }}</p>
-      <p class="signature">
+      <p class="signature" v-if="forum">
         <i
           >Posted in
           <router-link
@@ -28,13 +28,18 @@ export default {
   },
   computed: {
     forumName() {
-      return this.forum.name;
+      return this.forum.name ? this.forum.name : "loading...";
     },
   },
   created() {
-    forumService.getForum(this.post.forumId).then((response) => {
-      this.forum = response.data;
-    });
+    try {
+      forumService.getForum(this.post.forumId).then((response) => {
+        console.log(response.data);
+        this.forum = response.data;
+      })
+    } catch (error) {
+      console.error('Error fetching forum:', error)
+    }
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div>
     <create-comment v-show="$store.state.token !== ''" :postId="parseInt(this.$route.params.id)"/>
     <div class="post-header">
-    <post v-bind:post="this.post" />
+    <post v-bind:post="post"/>
     <b-button v-show="this.post.authorName === $store.state.user.username" style="background-color: #60233f; margin-right: 12rem;" v-on:click="deletePost">Delete post</b-button>
     </div>
     <comments-list/>
@@ -26,7 +26,7 @@ export default {
             forumId: 0,
             content: "",
             timeFormatted: ""
-        }
+        },
     }
     },
     created(){

@@ -28,7 +28,6 @@ export default {
     },
     methods: {
         addComment(){
-            console.log(this.comment);
             commentService.createComment(this.comment).then(response => {
                 if(response.status === 201){
                     console.log("Comment Created");
@@ -36,9 +35,6 @@ export default {
                 }
             })
         }
-    },
-    created(){
-        console.log(this.comment);
     }
 }
 </script>
