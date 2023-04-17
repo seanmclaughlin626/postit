@@ -39,6 +39,7 @@ CREATE TABLE comments (
 	post_id int,
 	content varchar(210),
 	time_created timestamp DEFAULT now(),
+	time_formatted varchar(300) DEFAULT to_char(current_timestamp, 'MM-DD-YYYY HH12:MI:SS AM'),
 	CONSTRAINT PK_comment PRIMARY KEY (comment_id),
 	CONSTRAINT FK_author FOREIGN KEY (author_id) REFERENCES users(user_id),
 	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id)

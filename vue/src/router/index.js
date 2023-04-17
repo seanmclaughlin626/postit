@@ -8,6 +8,7 @@ import store from '../store/index'
 import forum from '../views/Forum.vue';
 import allForums from '../views/AllForums.vue';
 import allPosts from '../views/AllPosts.vue';
+import CommentsInPost from '../views/CommentsInPost.vue';
 
 Vue.use(Router)
 
@@ -76,6 +77,14 @@ const router = new Router({
       path: "/posts",
       name: "posts",
       component: allPosts,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/posts/:id/comments",
+      name: "comments",
+      component: CommentsInPost,
       meta: {
         requiresAuth: false
       }

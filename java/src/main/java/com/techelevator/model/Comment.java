@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Comment {
+    private String author;
     private int commentId;
     private int authorId;
     private String content;
@@ -19,7 +20,7 @@ public class Comment {
         this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
     }
 
-    public Comment(int commentId, int authorId, String content, int postId) {
+    public Comment(int commentId, int authorId, String content, int postId, String author) {
         this.commentId = commentId;
         this.authorId = authorId;
         this.content = content;
@@ -27,6 +28,7 @@ public class Comment {
         this.timeCreated = LocalDateTime.now();
         DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
         this.timeCreatedFormatted = LocalDateTime.now().format(formatTime);
+        this.author = author;
     }
 
     public int getCommentId() {
@@ -75,5 +77,13 @@ public class Comment {
 
     public void setTimeCreatedFormatted(String timeCreatedFormatted) {
         this.timeCreatedFormatted = timeCreatedFormatted;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

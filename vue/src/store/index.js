@@ -22,10 +22,15 @@ export default new Vuex.Store({
     user: currentUser || {},
     forums: [],
     posts: [],
+    comments: [],
     currentForumPosts: [],
     searchUserList: []
   },
   mutations: {
+    SET_COMMENTS(state, data){
+      state.comments = data;
+    },
+
     SET_POSTS(state, data){
       state.posts = data;
     },
