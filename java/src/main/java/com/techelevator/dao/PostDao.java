@@ -13,4 +13,6 @@ public interface PostDao {
     void createPost(Post post);
 
     List<Post> getPostsByForumId(int id);
+
+    void deletePost(Post post);
 }

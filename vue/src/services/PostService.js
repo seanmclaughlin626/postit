@@ -20,5 +20,9 @@ export default{
 
     createPost(post){
         return http.post('/posts', post, {headers: {'Authorization': 'Bearer ' + store.state.token}})
+    },
+
+    deletePost(post){
+        return http.delete('/posts', post, {headers: {'Authorization': 'Bearer ' + store.state.token}})
     }
 }

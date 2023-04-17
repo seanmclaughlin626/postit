@@ -4,11 +4,13 @@ import com.techelevator.dao.JdbcPostDao;
 import com.techelevator.dao.PostDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Post;
+import com.techelevator.services.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -16,9 +18,11 @@ import java.util.List;
 public class PostController {
 
     private PostDao postDao;
+    private PostService postService;
 
-    PostController(JdbcTemplate jdbcTemplate){
-        this.postDao = new JdbcPostDao(jdbcTemplate);
+    PostController(PostDao postDao, PostService postService){
+        this.postDao = postDao;
+        this.postService =  postService;
     }
 
     @RequestMapping (path = "/posts", method = RequestMethod.GET)
@@ -43,6 +47,9 @@ public class PostController {
         postDao.createPost(post);
     }
 
-
-
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(path = "/posts", method = RequestMethod.DELETE)
+    public void deletePost(@RequestBody Post post, Principal principal) {
+        postService.deletePostService(post, principal.getName());
+    }
 }

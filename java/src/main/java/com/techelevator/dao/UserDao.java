@@ -21,4 +21,6 @@ public interface UserDao {
     List<String> getNonModsBySearchQuery(String search, int forumId);
 
     List<String> getModUsernamesByForumId(int forumId);
+
+    List<Integer> getAdminUserIds();
 }

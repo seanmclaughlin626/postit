@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Post;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.security.Principal;
 import java.sql.Time;
@@ -12,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcPostDao implements PostDao{
 
     JdbcTemplate jdbcTemplate = new JdbcTemplate();
@@ -66,6 +68,14 @@ public class JdbcPostDao implements PostDao{
 
         String updateSql = "UPDATE forums SET last_interaction = now() WHERE forum_id = ?";
         jdbcTemplate.update(updateSql, post.getForumId());
+    }
+
+    @Override
+    public void deletePost(Post post){
+        String deleteCommentsSql = "DELETE FROM comments WHERE post_id = ?";
+        jdbcTemplate.update(deleteCommentsSql, post.getPostId());
+        String sql = "DELETE FROM posts WHERE post_id = ?";
+        jdbcTemplate.update(sql, post.getPostId());
     }
 
     private Post mapRowToPost(SqlRowSet results){
