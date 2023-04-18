@@ -16,5 +16,6 @@ export default{
 
     createComment(comment){
             return http.post('/comments', comment, {headers: {'Authorization': 'Bearer ' + store.state.token}})
-        }
+        },
+    
 }

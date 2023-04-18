@@ -17,12 +17,13 @@ public class PostService {
         this.userDao = userDao;
     }
 
-    public void deletePostService(Post post, String username){
+    public void deletePostService(int forumId, String authorName, int postId, String username){
+        int authorId = userDao.findIdByUsername(authorName);
         int userId = userDao.findIdByUsername(username);
-        List<String> modUsernames = userDao.getModUsernamesByForumId(post.getForumId());
+        List<String> modUsernames = userDao.getModUsernamesByForumId(forumId);
         List<Integer> adminIds = userDao.getAdminUserIds();
-        if(userId == post.getAuthor() || modUsernames.contains(username) || adminIds.contains(userId)){
-            postDao.deletePost(post);
+        if(userId == authorId || modUsernames.contains(username) || adminIds.contains(userId)){
+            postDao.deletePost(postId);
         }
     }
 }

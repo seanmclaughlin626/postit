@@ -48,8 +48,9 @@ public class PostController {
     }
 
     @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/posts", method = RequestMethod.DELETE)
-    public void deletePost(@RequestBody Post post, Principal principal) {
-        postService.deletePostService(post, principal.getName());
+    public void deletePost(@RequestParam ("forumId") int forumId , @RequestParam("authorName") String authorName, @RequestParam ("postId") int postId, Principal principal) {
+        postService.deletePostService(forumId, authorName, postId, principal.getName());
     }
 }

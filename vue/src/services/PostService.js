@@ -23,6 +23,7 @@ export default{
     },
 
     deletePost(post){
-        return http.delete('/posts', post, {headers: {'Authorization': 'Bearer ' + store.state.token}})
+        console.log(post)
+        return http.delete('/posts', {params: {forumId: parseInt(post.forumId), authorName: post.authorName, postId: parseInt(post.postId)}}, {headers: {'Authorization': 'Bearer ' + store.state.token}})
     }
 }
