@@ -73,6 +73,34 @@ public class JdbcForumDao implements ForumDao{
         jdbcTemplate.update(sql, forumId, userId);
     }
 
+    @Override
+    public List<Integer> getFavoriteForumIds(int userId){
+        List<Integer> results = new ArrayList<>();
+        String sql = "SELECT forum_id FROM favorite_forums WHERE user_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
+        while(rowSet.next()){
+            results.add(rowSet.getInt("forum_id"));
+        }
+        return results;
+    }
+
+    @Override
+    public List<Forum> getFavoriteForums(int userId){
+        List<Forum> results = new ArrayList<>();
+        String sql = "SELECT forums.forum_id, forums.forum_name, forums.last_interaction FROM favorite_forums JOIN forums ON favorite_forums.forum_id = forums.forum_id WHERE user_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
+        while(rowSet.next()){
+            results.add(mapRowToForum(rowSet));
+        }
+        return results;
+    }
+
+    @Override
+    public void addFavoriteForum(int forumId, int userId){
+        String sql = "INSERT INTO favorite_forums (forum_id, user_id) VALUES (?, ?)";
+        jdbcTemplate.update(sql, forumId, userId);
+    }
+
     private Forum mapRowToForum(SqlRowSet rowSet){
         Forum forum = new Forum();
         forum.setId(rowSet.getInt("forum_id"));

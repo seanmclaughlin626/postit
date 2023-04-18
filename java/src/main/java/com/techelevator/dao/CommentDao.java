@@ -11,4 +11,6 @@ public interface CommentDao {
     Comment getCommentById(int id);
 
     boolean createComment(Comment comment);
+
+    void deleteComment(int commentId);
 }

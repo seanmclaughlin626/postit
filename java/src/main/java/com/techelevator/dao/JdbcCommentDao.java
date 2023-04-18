@@ -47,6 +47,12 @@ import java.util.List;
         return jdbcTemplate.update(insertCommentSql, comment.getAuthorId(), comment.getPostId(), comment.getContent() ) == 1;
     }
 
+    @Override
+    public void deleteComment(int commentId){
+            String sql = "DELETE FROM comments WHERE comment_id = ?";
+            jdbcTemplate.update(sql, commentId);
+    }
+
     private Comment mapRowToComment(SqlRowSet rowSet){
             Comment comment = new Comment();
             comment.setCommentId(rowSet.getInt("comment_id"));

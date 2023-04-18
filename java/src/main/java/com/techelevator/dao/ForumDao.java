@@ -16,4 +16,10 @@ public interface ForumDao {
     List<Integer> getModIdsByForumId(int forumId);
 
     void promoteUserToMod(int userId, int forumId);
+
+    List<Integer> getFavoriteForumIds(int userId);
+
+    void addFavoriteForum(int forumId, int userId);
+
+    List<Forum> getFavoriteForums(int userId);
 }

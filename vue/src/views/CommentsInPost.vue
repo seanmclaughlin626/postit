@@ -7,9 +7,9 @@
     <div class="post-header">
       <post v-bind:post="post" />
       <b-button
-        v-show="canDeletePosts === true"
+        v-if="canDeletePosts === true"
         style="background-color: #60233f; margin-right: 12rem"
-        v-on:click="deletePost"
+        v-on:click="deletePost()"
         >Delete post</b-button
       >
     </div>
@@ -50,7 +50,6 @@ export default {
       this.post = response.data;
     });
     userService.modSearch(this.post.forumId).then((response) => {
-      console.log(response.data);
       this.mods = response.data;
     });
     if (

@@ -6,8 +6,11 @@
     </div>
     <div id="main-forum-view" v-show="!modView">
     <h1 id="forum-name"><b>{{forum.name}}</b></h1>
+    <div class="favorite-bar" v-show="!$store.state.favoriteForumIds.includes($route.params.id)">
+      <p>Loving this forum? <a v-on:click="addFavoriteForum" href="#" class="favorite-button">Favorite it!</a></p>
+    </div>
     <b-button style="background-color: #60233f;" v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</b-button>
-    <create-post :forumId="parseInt(this.$route.params.id)" v-show="creatingPost"/>
+    <create-post :forumId="parseInt($route.params.id)" v-show="creatingPost"/>
     <posts-in-forum v-bind:forum="forum"/>
     </div>
   </div>
@@ -56,6 +59,13 @@ export default {
            this.currentUserIsMod = false;
          }
         })
+      },
+      addFavoriteForum(){
+        ForumService.addFavoriteForm(this.$route.params.id).then((response) => {
+          if(response.status === 201){
+            location.reload();
+          }
+        })
       }
     },
     created(){
@@ -63,17 +73,35 @@ export default {
         this.$store.commit("SET_FORUMS", response.data);
     });
     this.checkModStatus();
+    if(this.$store.state.token !== ''){
+    ForumService.getFavoriteForumIds().then((response) => {
+      this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
+    })}
 }
 }
 </script>
 
 <style>
+.favorite-bar{
+  display: block;
+  background-color: #60233f;
+  text-align: center;
+  font-family: courier, monospace;
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+.favorite-button{
+  color: #d69830;
+  font-weight: bold;
+}
 #forum-name{
   text-align: center;
   font-family: courier, monospace;
  position: relative;
     width: 100%;
     margin: 40px auto;
+    margin-bottom: 1rem;
     filter: drop-shadow(-1px 6px 3px rgba(0, 0, 0, 0.5));
     height: auto;
         overflow: hidden;

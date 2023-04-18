@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.ForumDao;
+import com.techelevator.model.FavoriteForumDto;
 import com.techelevator.model.Forum;
 import com.techelevator.model.User;
 import com.techelevator.services.ForumService;
@@ -44,9 +45,28 @@ public class ForumController {
     public int createForumController(@RequestBody Forum forum, Principal principal){
         return forumService.createForumService(forum, principal.getName());
     }
+
+    @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/forums/{forumId}/mods")
     public void promoteUserToModController(@RequestBody User user, @PathVariable int forumId){
         forumService.promoteUserToMod(user.getUsername(), forumId);
+    }
+
+    @GetMapping("/favorite-forum-ids")
+    public List<Integer> getFavoriteForumIdsControl(@RequestParam("id") int id){
+        return forumDao.getFavoriteForumIds(id);
+    }
+
+    @GetMapping("/favorite-forums")
+    public List<Forum> getFavoriteForumsControl(@RequestParam("id") int id){
+        return forumDao.getFavoriteForums(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/favorite-forums")
+    public void addFavoriteForumControl(@RequestBody FavoriteForumDto favoriteForumDto){
+        forumDao.addFavoriteForum(favoriteForumDto.getForumId(), favoriteForumDto.getUserId());
     }
 }

@@ -18,11 +18,10 @@ public class PostService {
     }
 
     public void deletePostService(int forumId, String authorName, int postId, String username){
-        int authorId = userDao.findIdByUsername(authorName);
         int userId = userDao.findIdByUsername(username);
         List<String> modUsernames = userDao.getModUsernamesByForumId(forumId);
         List<Integer> adminIds = userDao.getAdminUserIds();
-        if(userId == authorId || modUsernames.contains(username) || adminIds.contains(userId)){
+        if(authorName.equals(username) || modUsernames.contains(username) || adminIds.contains(userId)){
             postDao.deletePost(postId);
         }
     }
