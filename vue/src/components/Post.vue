@@ -26,18 +26,28 @@ export default {
       forum: {},
     };
   },
+  methods: {
+    async getForum(){
+      try {
+      await forumService.getForum(this.post.forumId).then((response) => {
+        this.forum = response.data;
+      })
+    } catch (error) {
+      console.error('Error fetching forum:', error)
+    }
+    }
+  },
   computed: {
     forumName() {
       return this.forum.name ? this.forum.name : "loading...";
     },
   },
-  created() {
-    try {
-      forumService.getForum(this.post.forumId).then((response) => {
-        this.forum = response.data;
-      })
-    } catch (error) {
-      console.error('Error fetching forum:', error)
+  async created(){
+    this.getForum()
+  },
+  async updated() {
+    if(this.post){
+    this.getForum()
     }
   },
 };
