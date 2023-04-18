@@ -19,8 +19,8 @@
         <img :src="post.url" alt="">
 
     </div>
-    <b-button v-show="!isShowingImage && post.url != null" v-on:click="changePostView">View Image</b-button>
-    <b-button v-show="isShowingImage" v-on:click="changePostView">View Post</b-button>
+    <b-button v-show="!isShowingImage && post.url != null" v-on:click="changePostView" style="background-color: #60233f; margin-left:15rem; padding:0.25rem;">View Image</b-button>
+    <b-button v-show="isShowingImage" v-on:click="changePostView" style="background-color: #60233f; margin-left:16rem; padding:0.25rem;">View Post</b-button>
     </div>
 </template>
 
@@ -106,6 +106,12 @@ p {
 
 .signature {
   font-size: 0.85rem;
+}
+
+img{
+  height: 15em;
+  width: 15em;
+  align-self: center;
 }
 </style>
 

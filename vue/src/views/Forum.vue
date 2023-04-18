@@ -190,4 +190,8 @@ export default {
             2.5% 8.6%,
             1.1% 5.5%
 )}
+
+body{
+  padding-bottom: 5rem;
+}
 </style>

@@ -7,9 +7,9 @@
           <br>
           <label for="content">Content:</label>
           <br>
-          <textarea name="content" id="content" cols="30" rows="10" v-model="post.content"></textarea>
+          <input type="text" name="content" id="content" v-model="post.content">
           <br>
-          <label for="url">(optional) Add an Image:</label>
+          <label for="url">Add an Image (optional): </label>
           <br>
           <input type="text" name="url" v-model="post.url">
           <br>
@@ -76,8 +76,10 @@ form{
   justify-content: space-between;
 }
 label{
-      font-weight: bold;
-  font-size: 1.25rem;
+font-weight: bold;
+  font-size: 1rem;
   font-family: courier, monospace;
+  margin-bottom: -1rem;
 }
+
 </style>
