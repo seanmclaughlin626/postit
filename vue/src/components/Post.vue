@@ -34,7 +34,6 @@ export default {
   created() {
     try {
       forumService.getForum(this.post.forumId).then((response) => {
-        console.log(response.data);
         this.forum = response.data;
       })
     } catch (error) {

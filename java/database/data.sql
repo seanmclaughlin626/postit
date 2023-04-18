@@ -20,9 +20,9 @@ INSERT INTO forums (forum_name) VALUES ('Collecting');
 INSERT INTO posts (forum_id, author_id, title, content, time_created, upvotes)
 VALUES (1, 1, 'Advice with Loops and Arrays?', 'I am currently learning loops and arrays and was hoping to get advice from other devs on what helped you understand them', CURRENT_TIMESTAMP, 40);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
-VALUES (1, 2, 'Tech Elevator is the BEST bootcamp to learn java!', 'I attended Tech Elevator to become a junior developer and I cannot reccomend them more!', (now() - INTERVAL '5 DAY'), (now() - INTERVAL '5 DAY'), (now() - INTERVAL '5 DAY'), 3);
-INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, upvotes)
-VALUES(1, 3, 'Any tips on making a nice nav bar?', 'Let me know your favorite methods!', (now() - INTERVAL '60 MINUTES'),(now() - INTERVAL '60 MINUTES'), 1);
+VALUES (1, 2, 'Tech Elevator is the BEST bootcamp to learn java!', 'I attended Tech Elevator to become a junior developer and I cannot reccomend them more!', (CURRENT_TIMESTAMP - INTERVAL '5 DAY'), to_char(CURRENT_TIMESTAMP - INTERVAL '5 DAY', 'MM-DD-YYYY HH12:MI:SS AM'), (CURRENT_TIMESTAMP - INTERVAL '5 DAY'), 3);
+INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
+VALUES(1, 3, 'Any tips on making a nice nav bar?', 'Let me know your favorite methods!', (now() - INTERVAL '60 MINUTES'),to_char(now() - INTERVAL '60 MINUTES', 'MM-DD-YYYY HH12:MI:SS AM'), (now() - INTERVAL '60 MINUTES'), 1);
 
 
 VALUES (2, 1, 'Whats everyones current Favorite anime?', 'I was wondering what animes everyone is liking right now? My current favs are Vinland Saga and Demon Slayer!', CURRENT_TIMESTAMP, 400);
@@ -36,14 +36,14 @@ VALUES(2, 4, 'Check out Hells Paradise!', 'Its suuuper good', CURRENT_TIMESTAMP,
 INSERT INTO posts (forum_id, author_id, title, content, time_created, upvotes)
 VALUES(3, 1, 'Whats everyones current favorite banger?', 'Drop your favorite songs/bands! Looking for new stuff to listen to.', CURRENT_TIMESTAMP, 65);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
-VALUES(3, 2, 'Everyone should checkout Malevolence', 'Recently stumbled upon this band. Everyone should check them out!', (now() - INTERVAL '2 DAY'), (now() - INTERVAL '2 DAY'), (now() - INTERVAL '2 DAY'), 42);
+VALUES(3, 2, 'Everyone should checkout Malevolence', 'Recently stumbled upon this band. Everyone should check them out!', (now() - INTERVAL '2 DAY'), to_char(now() - INTERVAL '2 DAY', 'MM-DD-YYYY HH12:MI:SS AM'), (now() - INTERVAL '2 DAY'), 42);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, upvotes)
 VALUES(3, 6, 'Spirtbox slaps', 'Cant believe this vocalist was in I wrestled a bear once! Shes sooo much better now!', CURRENT_TIMESTAMP, 1);
 
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
-VALUES(4, 1, 'If you could see any classic rock show, what would it be?', 'Nirvana!', (now() - INTERVAL '3 DAY'), (now() - INTERVAL '3 DAY'), (now() - INTERVAL '3 DAY'), 357);
+VALUES(4, 1, 'If you could see any classic rock show, what would it be?', 'Nirvana!', (now() - INTERVAL '3 DAY'), to_char(now() - INTERVAL '3 DAY', 'MM-DD-YYYY HH12:MI:SS AM'), (now() - INTERVAL '3 DAY'), 357);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
-VALUES(4, 2, 'Whats your favorite classic rock band?', 'Its too hard to choose!', (now() - INTERVAL '1 DAY'), (now() - INTERVAL '1 DAY'), (now() - INTERVAL '1 DAY'), 90);
+VALUES(4, 2, 'Whats your favorite classic rock band?', 'Its too hard to choose!', (now() - INTERVAL '1 DAY'), to_char(now() - INTERVAL '1 DAY', 'MM-DD-YYYY HH12:MI:SS AM'), (now() - INTERVAL '1 DAY'), 90);
 
 INSERT INTO posts (forum_id, author_id, title, content, time_created, upvotes)
 VALUES(6, 6, 'ETK LFM', '<Entrance to Kur> 10/10H LFM for 10.1 raid content', CURRENT_TIMESTAMP, 2);
