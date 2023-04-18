@@ -19,6 +19,7 @@
         <img :src="post.url" alt="">
 
     </div>
+    <b-button v-if="canDeletePosts === true" style="background-color: #60233f; margin-right: 12rem; padding:0.25rem;" v-on:click="deletePost()">Delete post</b-button>
     <b-button v-show="!isShowingImage && post.url != null" v-on:click="changePostView" style="background-color: #60233f; margin-left:15rem; padding:0.25rem;">View Image</b-button>
     <b-button v-show="isShowingImage" v-on:click="changePostView" style="background-color: #60233f; margin-left:16rem; padding:0.25rem;">View Post</b-button>
     </div>
@@ -26,6 +27,8 @@
 
 <script>
 import forumService from "../services/ForumService";
+import userService from '../services/UserService';
+import postService from '../services/PostService';
 
 export default {
   name: "post",
@@ -33,7 +36,9 @@ export default {
   data() {
     return {
       forum: {},
-      isShowingImage: false
+      isShowingImage: false,
+      mods: [],
+      canDeletePosts: false,
     };
   },
   methods: {
@@ -48,7 +53,11 @@ export default {
     },
     changePostView(){
         this.isShowingImage = !this.isShowingImage;
-    }
+    },
+    deletePost() {
+      postService.deletePost(this.post);
+      this.$router.push({name: 'forum', params: {id: this.post.forumId}})
+    },
   },
   computed: {
     forumName() {
@@ -56,7 +65,18 @@ export default {
     },
   },
   async created(){
-    this.getForum()
+    this.getForum();
+
+    userService.modSearch(this.post.forumId).then((response) => {
+      this.mods = response.data;
+    });
+    if (
+      this.$store.state.user.username === this.post.authorName ||
+      this.mods.includes(this.$store.state.user.username) ||
+      this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
+    ) {
+      this.canDeletePosts = true;
+    }
   },
   async updated() {
     if(this.post){

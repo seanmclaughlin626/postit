@@ -2,7 +2,7 @@
   <form v-on:submit.prevent="createForum">
     <label for="name">Forum name: </label>
     <input type="text" name="name" id="name" v-model="forum.name" />
-    <b-button style="margin-left: 1rem; background-color: #60233f;" type="submit">Post it!</b-button>
+    <b-button style="margin-left: 1rem; background-color: #60233f;" type="submit">PostIt!</b-button>
   </form>
 </template>
 

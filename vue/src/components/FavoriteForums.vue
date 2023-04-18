@@ -2,7 +2,7 @@
   <div>
       <h4><b>Favorited Forums</b></h4>
       <ul class="favorite-list" v-for="forum in $store.state.favoriteForums" v-bind:key="forum.id">
-          <router-link v-bind:to="{name: 'forum', params: {id: favorite}}">{{forum.name}}</router-link>
+          <router-link v-bind:to="{name: 'forum', params: {id: forum.id}}">{{forum.name}}</router-link>
       </ul>
   </div>
 </template>

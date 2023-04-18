@@ -6,13 +6,14 @@
     </div>
     <div id="main-forum-view" v-show="!modView">
     <h1 id="forum-name"><b>{{forum.name}}</b></h1>
-    <div class="favorite-bar" v-show="!$store.state.favoriteForumIds.includes($route.params.id)">
+    <div class="favorite-bar" v-show="userHasFavoritedForum === false">
       <p>Loving this forum? <a v-on:click="addFavoriteForum" href="#" class="favorite-button">Favorite it!</a></p>
     </div>
     <b-button style="background-color: #60233f;" v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</b-button>
     <create-post :forumId="parseInt($route.params.id)" v-show="creatingPost"/>
     <posts-in-forum v-bind:forum="forum"/>
     </div>
+    <favorite-forums/>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import CreatePost from '../components/CreatePost.vue';
 import ModView from '../components/ModView.vue';
 import PostsInForum from '../components/PostsInForum.vue';
 import ForumService from '../services/ForumService';
+import FavoriteForums from '../components/FavoriteForums.vue';
 
 
 export default {
@@ -28,7 +30,8 @@ export default {
     components: {
       PostsInForum,
       CreatePost,
-      ModView
+      ModView,
+      FavoriteForums
     },
     data(){
       return {
@@ -47,9 +50,18 @@ export default {
         } else {
           return {id: 0, name: "", lastInteraction: null};
         }
+      },
+      userHasFavoritedForum(){
+        return this.$store.state.favoriteForumIds.includes(this.$route.params.id)
       }
     },
     methods: {
+      setFavorites(){
+      if(this.$store.state.token !== ''){
+          ForumService.getFavoriteForumIds().then((response) => {
+          this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
+    })}
+      },
       checkModStatus(){
         ForumService.getMods(this.$route.params.id).then((response) => {
           let modArray = response.data;
@@ -61,11 +73,12 @@ export default {
         })
       },
       addFavoriteForum(){
-        ForumService.addFavoriteForm(this.$route.params.id).then((response) => {
+        ForumService.addFavoriteForum(this.$route.params.id).then((response) => {
           if(response.status === 201){
-            location.reload();
+          this.setFavorites();
           }
         })
+        
       }
     },
     created(){
@@ -73,10 +86,7 @@ export default {
         this.$store.commit("SET_FORUMS", response.data);
     });
     this.checkModStatus();
-    if(this.$store.state.token !== ''){
-    ForumService.getFavoriteForumIds().then((response) => {
-      this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
-    })}
+    this.setFavorites();
 }
 }
 </script>

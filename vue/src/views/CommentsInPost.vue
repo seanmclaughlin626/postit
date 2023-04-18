@@ -6,14 +6,9 @@
     />
     <div class="post-header">
       <post v-bind:post="post" />
-      <b-button
-        v-if="canDeletePosts === true"
-        style="background-color: #60233f; margin-right: 12rem"
-        v-on:click="deletePost()"
-        >Delete post</b-button
-      >
     </div>
     <comments-list />
+    <favorite-forums/>
   </div>
 </template>
 
@@ -23,7 +18,7 @@ import CommentsList from "../components/CommentsList";
 import Post from "../components/Post.vue";
 import PostService from "../services/PostService";
 import CreateComment from "../components/CreateComment.vue";
-import userService from "../services/UserService.js";
+import FavoriteForums from '../components/FavoriteForums.vue';
 
 export default {
   data() {
@@ -36,8 +31,6 @@ export default {
         content: "",
         timeFormatted: "",
       },
-      mods: [],
-      canDeletePosts: false,
     };
   },
   created() {
@@ -49,36 +42,13 @@ export default {
     PostService.getPostById(this.$route.params.id).then((response) => {
       this.post = response.data;
     });
-    userService.modSearch(this.post.forumId).then((response) => {
-      this.mods = response.data;
-    });
-    if (
-      this.$store.state.user.username === this.post.authorName ||
-      this.mods.includes(this.$store.state.user.username) ||
-      this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
-    ) {
-      this.canDeletePosts = true;
-    }
-  },
-  updated() {
-    if (
-      this.$store.state.user.username === this.post.authorName ||
-      this.mods.includes(this.$store.state.user.username) ||
-      this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
-    ) {
-      this.canDeletePosts = true;
-    }
+    
   },
   components: {
     CommentsList,
     Post,
     CreateComment,
-  },
-  methods: {
-    deletePost() {
-      PostService.deletePost(this.post);
-      this.$router.push({name: 'forum', params: {id: this.post.forumId}})
-    },
+    FavoriteForums
   },
 };
 </script>

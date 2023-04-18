@@ -27,7 +27,7 @@ export default {
     getFavoriteForums(){
         return http.get('favorite-forums', {params: {id: parseInt(store.state.user.id)}});
     },
-    addFavoriteForm(forumId){
+    addFavoriteForum(forumId){
         return http.post("favorite-forums", {forumId: parseInt(forumId), userId: parseInt(store.state.user.id)}, {headers: {'Authorization': 'Bearer ' + store.state.token}});
     }
 }
