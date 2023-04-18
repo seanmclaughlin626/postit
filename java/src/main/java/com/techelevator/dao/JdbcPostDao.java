@@ -26,7 +26,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public List<Post> getPosts() {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT post_id, p.author_id, forum_id, title, upvotes, downvotes, content, time_created, time_formatted, last_interaction, u.username FROM posts AS p JOIN users AS u ON p.author_id = u.user_id";
+        String sql = "SELECT post_id, p.author_id, forum_id, title, upvotes, downvotes, content, time_created, time_formatted, last_interaction, u.username, image_url FROM posts AS p JOIN users AS u ON p.author_id = u.user_id";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while(result.next()){
             Post post = new Post();
@@ -40,7 +40,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public Post getPostById(int id) {
         Post post = new Post();
-        String sql = "SELECT post_id, p.author_id, forum_id, title, upvotes, downvotes, content, time_created, time_formatted, last_interaction, u.username FROM posts AS p JOIN users AS u ON p.author_id = u.user_id WHERE post_id = ?";
+        String sql = "SELECT post_id, p.author_id, forum_id, title, upvotes, downvotes, content, time_created, time_formatted, last_interaction, u.username, image_url FROM posts AS p JOIN users AS u ON p.author_id = u.user_id WHERE post_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         if(result.next()){
             post = mapRowToPost(result);
@@ -51,7 +51,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public List<Post> getPostsByForumId(int id) {
         List<Post> posts = new ArrayList<>();
-        String sql = "SELECT post_id, p.author_id, title, upvotes, downvotes, content, time_created, time_formatted, u.username, forum_id FROM posts AS p JOIN users AS u ON p.author_id = u.user_id WHERE forum_id = ? ORDER BY time_created DESC";
+        String sql = "SELECT post_id, p.author_id, title, upvotes, downvotes, content, time_created, time_formatted, u.username, forum_id, image_url FROM posts AS p JOIN users AS u ON p.author_id = u.user_id WHERE forum_id = ? ORDER BY time_created DESC";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
         while(result.next()){
             Post post = new Post();
@@ -63,8 +63,8 @@ public class JdbcPostDao implements PostDao{
 
     @Override
     public void createPost(Post post) {
-        String sql = "INSERT INTO posts (author_id, title, content, forum_id) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent(), post.getForumId());
+        String sql = "INSERT INTO posts (author_id, title, content, forum_id, image_url) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql,post.getAuthor(), post.getTitle(), post.getContent(), post.getForumId(), post.getUrl());
 
         String updateSql = "UPDATE forums SET last_interaction = now() WHERE forum_id = ?";
         jdbcTemplate.update(updateSql, post.getForumId());
@@ -93,6 +93,7 @@ public class JdbcPostDao implements PostDao{
         post.setLastInteraction(lastInteractionTimestamp.toLocalDateTime());
         post.setAuthorName(results.getString("username"));
         post.setForumId(results.getInt("forum_id"));
+        post.setUrl(results.getString("image_url"));
         return post;
     }
 

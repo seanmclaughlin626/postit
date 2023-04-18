@@ -17,15 +17,16 @@ public class Post {
    private String timeFormatted;
    private LocalDateTime lastInteraction;
    private String authorName;
-
+   private String url;
    public Post(){}
 
-   public Post(int postId, int author, String title, String content, int upvoteScore) {
+   public Post(int postId, int author, String title, String content, int upvoteScore, String url) {
        this.postId = postId;
        this.author = author;
        this.title = title;
        this.content = content;
        this.upvoteScore = upvoteScore;
+       this.url = url;
    }
 
    public int getPostId() {
@@ -106,6 +107,14 @@ public class Post {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
 

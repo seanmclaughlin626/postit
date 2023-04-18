@@ -9,6 +9,10 @@
           <br>
           <textarea name="content" id="content" cols="30" rows="10" v-model="post.content"></textarea>
           <br>
+          <label for="url">(optional) Add an Image:</label>
+          <br>
+          <input type="text" name="url" v-model="post.url">
+          <br>
           <b-button style="background-color: #60233f;" type="submit">Post It!</b-button>
       </form>
   </div>
@@ -29,7 +33,8 @@ export default {
                 forumId: this.forumId,
                 author: 0,
                 title: "",
-                content: ""
+                content: "",
+                url: null
             }
         }
     },

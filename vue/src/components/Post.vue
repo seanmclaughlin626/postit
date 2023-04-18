@@ -1,5 +1,6 @@
 <template>
-    <div class="post-card">
+    <div>
+    <div class="post-card" v-show="!isShowingImage">
       <h2>{{ post.title }}</h2>
       <p>{{ post.content }}</p>
       <p class="signature" v-if="forum">
@@ -13,6 +14,14 @@
         >
       </p>
     </div>
+    <div class="post-card" v-show="isShowingImage">
+        <h2>{{post.title}}</h2>
+        <img :src="post.url" alt="">
+
+    </div>
+    <b-button v-show="!isShowingImage && post.url != null" v-on:click="changePostView">View Image</b-button>
+    <b-button v-show="isShowingImage" v-on:click="changePostView">View Post</b-button>
+    </div>
 </template>
 
 <script>
@@ -24,6 +33,7 @@ export default {
   data() {
     return {
       forum: {},
+      isShowingImage: false
     };
   },
   methods: {
@@ -35,6 +45,9 @@ export default {
     } catch (error) {
       console.error('Error fetching forum:', error)
     }
+    },
+    changePostView(){
+        this.isShowingImage = !this.isShowingImage;
     }
   },
   computed: {
