@@ -12,6 +12,7 @@ import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 public class JdbcForumDao implements ForumDao{
@@ -99,6 +100,17 @@ public class JdbcForumDao implements ForumDao{
     public void addFavoriteForum(int forumId, int userId){
         String sql = "INSERT INTO favorite_forums (forum_id, user_id) VALUES (?, ?)";
         jdbcTemplate.update(sql, forumId, userId);
+    }
+
+    @Override
+    public List<Forum> getForumsBySearchQuery(String searchInput){
+        List<Forum> results = new ArrayList<>();
+        String sql = "SELECT forum_id, forum_name, last_interaction FROM forums WHERE LOWER(forum_name) ILIKE '%'||?||'%'";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, searchInput.toLowerCase());
+        while(rowSet.next()){
+            results.add(mapRowToForum(rowSet));
+        }
+        return results;
     }
 
     private Forum mapRowToForum(SqlRowSet rowSet){

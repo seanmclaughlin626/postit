@@ -69,4 +69,9 @@ public class ForumController {
     public void addFavoriteForumControl(@RequestBody FavoriteForumDto favoriteForumDto){
         forumDao.addFavoriteForum(favoriteForumDto.getForumId(), favoriteForumDto.getUserId());
     }
+
+    @GetMapping("/forum-search")
+    public List<Forum> getForumsBySearchQueryControl(@RequestParam("searchInput") String searchInput){
+        return forumDao.getForumsBySearchQuery(searchInput);
+    }
 }

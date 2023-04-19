@@ -22,4 +22,6 @@ public interface ForumDao {
     void addFavoriteForum(int forumId, int userId);
 
     List<Forum> getFavoriteForums(int userId);
+
+    List<Forum> getForumsBySearchQuery(String searchInput);
 }

@@ -26,11 +26,16 @@ export default new Vuex.Store({
     currentForumPosts: [],
     searchUserList: [],
     favoriteForumIds: [],
-    favoriteForums: []
+    favoriteForums: [],
+    searchForumList: []
   },
   mutations: {
     SET_COMMENTS(state, data){
       state.comments = data;
+    },
+
+    SET_FORUM_SEARCH_RESULTS(state, data){
+      state.searchForumList = data;
     },
 
     SET_FAVORITE_FORUMS(state, data){

@@ -6,7 +6,7 @@
     </div>
     <div id="main-forum-view" v-show="!modView">
     <h1 id="forum-name"><b>{{forum.name}}</b></h1>
-    <div class="favorite-bar" v-show="userHasFavoritedForum === false">
+    <div class="favorite-bar" v-show="!userHasFavoritedForum">
       <p>Loving this forum? <a v-on:click="addFavoriteForum" href="#" class="favorite-button">Favorite it!</a></p>
     </div>
     <b-button style="background-color: #60233f;" v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</b-button>
@@ -37,7 +37,8 @@ export default {
       return {
       creatingPost: false,
       modView: false,
-      currentUserIsMod: false
+      currentUserIsMod: false,
+      userHasFavoritedForum: true
       }
     },
     computed: {
@@ -51,16 +52,16 @@ export default {
           return {id: 0, name: "", lastInteraction: null};
         }
       },
-      userHasFavoritedForum(){
-        return this.$store.state.favoriteForumIds.includes(this.$route.params.id)
-      }
     },
     methods: {
       setFavorites(){
       if(this.$store.state.token !== ''){
           ForumService.getFavoriteForumIds().then((response) => {
           this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
-    })}
+    })
+          ForumService.getFavoriteForums().then((response) => {
+            this.$store.commit("SET_FAVORITE_FORUMS", response.data);
+          })}
       },
       checkModStatus(){
         ForumService.getMods(this.$route.params.id).then((response) => {
@@ -76,9 +77,9 @@ export default {
         ForumService.addFavoriteForum(this.$route.params.id).then((response) => {
           if(response.status === 201){
           this.setFavorites();
+          this.userHasFavoritedForum = true;
           }
         })
-        
       }
     },
     created(){
@@ -87,6 +88,9 @@ export default {
     });
     this.checkModStatus();
     this.setFavorites();
+    if(!this.$store.state.favoriteForumIds.includes(this.$route.params.id)){
+        this.userHasFavoritedForum = false;
+    }
 }
 }
 </script>

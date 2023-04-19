@@ -22,12 +22,15 @@ export default {
         return http.post(`/forums/${id}/mods`, user);
     },
     getFavoriteForumIds(){
-        return http.get('favorite-forum-ids', {params: {id: parseInt(store.state.user.id)}});
+        return http.get('/favorite-forum-ids', {params: {id: parseInt(store.state.user.id)}});
     },
     getFavoriteForums(){
-        return http.get('favorite-forums', {params: {id: parseInt(store.state.user.id)}});
+        return http.get('/favorite-forums', {params: {id: parseInt(store.state.user.id)}});
     },
     addFavoriteForum(forumId){
-        return http.post("favorite-forums", {forumId: parseInt(forumId), userId: parseInt(store.state.user.id)}, {headers: {'Authorization': 'Bearer ' + store.state.token}});
+        return http.post("/favorite-forums", {forumId: parseInt(forumId), userId: parseInt(store.state.user.id)}, {headers: {'Authorization': 'Bearer ' + store.state.token}});
+    },
+    forumSearch(search){
+        return http.get("/forum-search", {params: {searchInput: search.searchInput}});
     }
 }

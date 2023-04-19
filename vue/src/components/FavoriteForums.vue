@@ -11,11 +11,6 @@
 import forumService from '../services/ForumService';
 
 export default {
-    data(){
-        return {
-        name: ""
-    }
-    },
     methods: {
         getForumName(id){
             forumService.getForum(id).then((response) => {
@@ -29,8 +24,7 @@ export default {
     forumService.getFavoriteForums().then((response) => {
       this.$store.commit("SET_FAVORITE_FORUMS", response.data);
     })}
-    console.log(this.getForumName(1));
-  }
+  },
 }
 </script>
 

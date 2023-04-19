@@ -1,6 +1,13 @@
 <template>
   <div class="home">
-    <div class="forum-creation" v-show="$store.state.token !== ''">Don't see a forum you like? Make one! <create-forum/></div>
+    <div class="forum-bar">
+      <div class="forum-search">
+        <forum-search/>
+        </div>
+    <div class="forum-creation" v-show="$store.state.token !== ''">
+      Don't see a forum you like? Make one! <create-forum/>
+      </div>
+      </div>
     <popular-posts/>
     <div class="forum-lists">
     <forum-list/>
@@ -15,13 +22,15 @@ import ForumList from '../components/ForumList.vue';
 import FavoriteForums from '../components/FavoriteForums.vue';
 import CreateForum from '../components/CreateForum.vue';
 import forumService from '../services/ForumService';
+import ForumSearch from '../components/ForumSearch.vue';
 
 export default {
   components:{
     PopularPosts,
     ForumList,
     CreateForum,
-    FavoriteForums
+    FavoriteForums,
+    ForumSearch
   },
   name: "home",
   created(){
@@ -34,12 +43,13 @@ export default {
 </script>
 
 <style scoped>
-.forum-creation {
+.forum-bar {
   color: white;
   background-image: linear-gradient(to right, #a46434, #60233f);
   padding: 0.5rem;
   border: 2px #60233f solid;
-  display: block;
+  display: flex;
+  justify-content: space-between;
 }
 
 .home{
