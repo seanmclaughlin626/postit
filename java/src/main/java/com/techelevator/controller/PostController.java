@@ -56,9 +56,9 @@ public class PostController {
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/posts/{id}/voted-user", method = RequestMethod.POST)
-    public void addVotedUser(@PathVariable int id, @RequestParam("userId") int userId, @RequestParam("vote") int vote){
-        postDao.addVoted(userId, id, vote);
+    @RequestMapping(path = "/posts/{postId}/voted-user", method = RequestMethod.POST)
+    public void addVotedUser(@PathVariable int postId, @RequestParam("userId") int userId, @RequestParam("vote") int vote){
+        postDao.addVoted(userId, postId, vote);
     }
 
 }
