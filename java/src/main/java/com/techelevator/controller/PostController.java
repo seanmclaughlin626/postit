@@ -53,4 +53,12 @@ public class PostController {
     public void deletePost(@RequestParam ("forumId") int forumId , @RequestParam("authorName") String authorName, @RequestParam ("postId") int postId, Principal principal) {
         postService.deletePostService(forumId, authorName, postId, principal.getName());
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/posts/{id}/voted-user", method = RequestMethod.POST)
+    public void addVotedUser(@PathVariable int id, int userId, int vote){
+        postDao.addVoted(userId, id, vote);
+    }
+
 }

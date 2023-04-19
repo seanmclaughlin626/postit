@@ -18,5 +18,9 @@ const http = axios.create({
 
         modSearch(forumId){
             return http.get(`/${forumId}/get-mods`)
+        },
+
+        votedUserSearch(postId){
+            return http.get(`/posts/${postId}/get-users-voted`)
         }
     }

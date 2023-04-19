@@ -23,4 +23,6 @@ public interface UserDao {
     List<String> getModUsernamesByForumId(int forumId);
 
     List<Integer> getAdminUserIds();
+
+    List<Integer> getAllVotedPostUserByPostId(int postId);
 }

@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS forum_moderators, favorite_forums, comments, posts, forums, users;
+DROP TABLE IF EXISTS forum_moderators, favorite_forums, comments, posts, forums, users, voted_post;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -60,5 +60,14 @@ CREATE TABLE favorite_forums(
 	CONSTRAINT FK_fav_forum FOREIGN KEY (forum_id) REFERENCES forums(forum_id),
 	CONSTRAINT PK_fav PRIMARY KEY (user_id, forum_id)
 );
+
+CREATE TABLE voted_post(
+	user_id int,
+	post_id int,
+	CONSTRAINT FK_voted_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+	CONSTRAINT FK_voted_post FOREIGN KEY (post_id) REFERENCES posts(post_id),
+	CONSTRAINT PK_voted PRIMARY KEY (user_id, post_id)
+);
+
 
 COMMIT TRANSACTION;

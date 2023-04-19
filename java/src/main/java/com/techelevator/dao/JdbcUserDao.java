@@ -136,6 +136,18 @@ public class JdbcUserDao implements UserDao {
         return adminUsersIds;
     }
 
+
+    @Override
+    public List<Integer>getAllVotedPostUserByPostId(int postId){
+        List<Integer> votedUser = new ArrayList<>();
+        String sql = "SELECT user_id FROM voted_post";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while(results.next()){
+            votedUser.add(results.getInt("user_id"));
+        }
+        return votedUser;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

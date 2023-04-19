@@ -15,4 +15,6 @@ public interface PostDao {
     List<Post> getPostsByForumId(int id);
 
     void deletePost(int postId);
+
+     void addVoted(int userId, int postId, int vote);
 }

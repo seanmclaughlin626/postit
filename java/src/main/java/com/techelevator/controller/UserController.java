@@ -39,4 +39,9 @@ public class UserController {
     public List<String> getModsForForum(@PathVariable int forumId){
        return userDao.getModUsernamesByForumId(forumId);
     }
+
+    @GetMapping("/posts/{postId}/get-users-voted")
+    public List<Integer> getUserIdForPost(@PathVariable int postId){
+       return userDao.getAllVotedPostUserByPostId(postId);
+    }
 }
