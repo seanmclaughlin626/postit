@@ -37,8 +37,7 @@ export default {
       return {
       creatingPost: false,
       modView: false,
-      currentUserIsMod: false,
-      userHasFavoritedForum: true
+      currentUserIsMod: false
       }
     },
     computed: {
@@ -52,6 +51,9 @@ export default {
           return {id: 0, name: "", lastInteraction: null};
         }
       },
+      userHasFavoritedForum(){
+        return this.$store.state.favoriteForumIds.includes(this.$route.params.id);
+      }
     },
     methods: {
       setFavorites(){
@@ -87,10 +89,7 @@ export default {
         this.$store.commit("SET_FORUMS", response.data);
     });
     this.checkModStatus();
-    this.setFavorites();
-    if(!this.$store.state.favoriteForumIds.includes(this.$route.params.id)){
-        this.userHasFavoritedForum = false;
-    }
+    // this.setFavorites();
 }
 }
 </script>

@@ -2,13 +2,14 @@
   <div>
       <h4><b>Favorited Forums</b></h4>
       <ul class="favorite-list" v-for="forum in $store.state.favoriteForums" v-bind:key="forum.id">
-          <router-link v-bind:to="{name: 'forum', params: {id: forum.id}}">{{forum.name}}</router-link>
+          <h5 v-on:click="updateForumPosts(forum.id)">{{forum.name}}</h5>
       </ul>
   </div>
 </template>
 
 <script>
 import forumService from '../services/ForumService';
+import postService from '../services/PostService';
 
 export default {
     methods: {
@@ -16,6 +17,13 @@ export default {
             forumService.getForum(id).then((response) => {
                 let name = response.data.name;
                 return name;
+            })
+        },
+        updateForumPosts(forumId){
+            postService.getPostsByForumId(forumId).then((response) => {
+                this.$store.commit("SET_CURRENT_FORUM_POSTS", response.data);
+                this.$router.push({name: 'forum', params: {id: forumId}});
+                this.$router.go({name: 'forum', params: {id: forumId}});
             })
         }
     },
@@ -29,6 +37,15 @@ export default {
 </script>
 
 <style scoped>
+h5{
+    cursor: pointer;
+    color: #0645AD;
+}
+
+h5:hover{
+    text-decoration: underline;
+}
+
 div{
     text-align: center;
   font-family: courier, monospace;

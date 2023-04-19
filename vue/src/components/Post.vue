@@ -3,12 +3,12 @@
     <div class="post-card" v-show="!isShowingImage">
       <h2>{{ post.title }}</h2>
       <p>{{ post.content }}</p>
-      <p class="signature" v-if="forum">
+      <p class="signature">
         <i
           >Posted in
           <router-link
             v-bind:to="{ name: 'forum', params: { id: this.post.forumId } }"
-            >{{ forumName }}</router-link
+            >{{ post.forumName }}</router-link
           >
           by {{ post.authorName }} on {{ post.timeFormatted }}</i
         >
@@ -18,18 +18,19 @@
         <h2>{{post.title}}</h2>
         <img :src="post.url" alt="">
     </div>
+    <div class="button-bar-container">
     <div class="button-bar" v-if="buttonsVisible">
-    <b-button class="delete-button" v-if="canDeletePosts === true" style="background-color: #60233f; margin-right: 12rem; padding:0.25rem;" v-on:click="deletePost()">Delete post</b-button>
+    <b-button class="delete-button" v-if="canDeletePosts === true" style="background-color: #60233f; margin-right: 8rem; padding:0.25rem;" v-on:click="deletePost()">Delete post</b-button>
     <div class="toggle-image-buttons">
-    <b-button class="view-image-button" v-show="!isShowingImage && post.url != null" v-on:click="changePostView" style="background-color: #60233f; margin-left:15rem; padding:0.25rem;">View Image</b-button>
-    <b-button class="view-post-button" v-show="isShowingImage" v-on:click="changePostView" style="background-color: #60233f; margin-left:16rem; padding:0.25rem;">View Post</b-button>
+    <b-button class="view-image-button" v-show="!isShowingImage && post.url != null" v-on:click="changePostView" style="background-color: #60233f; margin-left: 1rem; padding:0.25rem;">View Image</b-button>
+    <b-button class="view-post-button" v-show="isShowingImage" v-on:click="changePostView" style="background-color: #60233f; margin-left:1rem;  padding:0.25rem;">View Post</b-button>
+    </div>
     </div>
     </div>
     </div>
 </template>
 
 <script>
-import forumService from "../services/ForumService";
 import userService from '../services/UserService';
 import postService from '../services/PostService';
 
@@ -38,71 +39,43 @@ export default {
   props: { post: Object },
   data() {
     return {
-      forum: {},
       isShowingImage: false,
       mods: [],
-      canDeletePosts: false,
     };
   },
   methods: {
-    async getForum(){
-      try {
-      await forumService.getForum(this.post.forumId).then((response) => {
-        this.forum = response.data;
-      })
-    } catch (error) {
-      console.error('Error fetching forum:', error)
-    }
-    },
     changePostView(){
         this.isShowingImage = !this.isShowingImage;
     },
     deletePost() {
-        debugger;
       postService.deletePostx(this.post, this.$store.state.token);
-      this.$router.push({name: 'forum', params: {id: this.post.forumId}})
+      this.$router.push({name: 'forum', params: {id: this.post.forumId}});
+      this.$router.go(0);
     },
   },
   computed: {
-    forumName() {
-      return this.forum.name ? this.forum.name : "loading...";
-    },
     buttonsVisible(){
       return this.$route.name === 'comments';
+    },
+    canDeletePosts(){
+      return this.$store.state.user.username === this.post.authorName ||
+      this.mods.includes(this.$store.state.user.username) ||
+      this.$store.state.user.authorities[0].name === "ROLE_ADMIN";
     }
   },
   async created(){
-    this.getForum();
 
     userService.modSearch(this.post.forumId).then((response) => {
       this.mods = response.data;
     });
-    if (
-      this.$store.state.user.username === this.post.authorName ||
-      this.mods.includes(this.$store.state.user.username) ||
-      this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
-    ) {
-      this.canDeletePosts = true;
-    }
+    // if (
+    //   this.$store.state.user.username === this.post.authorName ||
+    //   this.mods.includes(this.$store.state.user.username) ||
+    //   this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
+    // ) {
+    //   this.canDeletePosts = true;
+    // }
   },
-  async updated() {
-    if(this.post){
-    //this.getForum()
-      
-      userService.modSearch(this.post.forumId).then((response) => {
-      this.mods = response.data;
-    });
-    if (
-      this.$store.state.user.username === this.post.authorName ||
-      this.mods.includes(this.$store.state.user.username) ||
-      this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
-    ) {
-      this.canDeletePosts = true;
-    }
-    }
-  },
-
-
 };
 </script>
 
@@ -156,11 +129,8 @@ img{
 
 .button-bar{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
-
-
 
 </style>
 

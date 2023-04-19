@@ -18,6 +18,8 @@ public class Post {
    private LocalDateTime lastInteraction;
    private String authorName;
    private String url;
+   private String forumName;
+
    public Post(){}
 
    public Post(int postId, int author, String title, String content, int upvoteScore, String url) {
@@ -115,6 +117,14 @@ public class Post {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getForumName() {
+        return forumName;
+    }
+
+    public void setForumName(String forumName) {
+        this.forumName = forumName;
     }
 }
 
