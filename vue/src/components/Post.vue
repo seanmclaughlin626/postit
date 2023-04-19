@@ -58,7 +58,8 @@ export default {
         this.isShowingImage = !this.isShowingImage;
     },
     deletePost() {
-      postService.deletePost(this.post);
+        debugger;
+      postService.deletePostx(this.post, this.$store.state.token);
       this.$router.push({name: 'forum', params: {id: this.post.forumId}})
     },
   },
@@ -84,22 +85,22 @@ export default {
       this.canDeletePosts = true;
     }
   },
-  // async updated() {
-  //   if(this.post){
-  //   this.getForum()
+  async updated() {
+    if(this.post){
+    //this.getForum()
       
-  //     userService.modSearch(this.post.forumId).then((response) => {
-  //     this.mods = response.data;
-  //   });
-  //   if (
-  //     this.$store.state.user.username === this.post.authorName ||
-  //     this.mods.includes(this.$store.state.user.username) ||
-  //     this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
-  //   ) {
-  //     this.canDeletePosts = true;
-  //   }
-  //   }
-  // },
+      userService.modSearch(this.post.forumId).then((response) => {
+      this.mods = response.data;
+    });
+    if (
+      this.$store.state.user.username === this.post.authorName ||
+      this.mods.includes(this.$store.state.user.username) ||
+      this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
+    ) {
+      this.canDeletePosts = true;
+    }
+    }
+  },
 
 
 };
