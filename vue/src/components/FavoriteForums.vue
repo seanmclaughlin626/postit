@@ -29,6 +29,9 @@ export default {
     },
     created(){
     if(this.$store.state.token !== ''){
+    forumService.getFavoriteForumIds().then((response) => {
+      this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
+    })
     forumService.getFavoriteForums().then((response) => {
       this.$store.commit("SET_FAVORITE_FORUMS", response.data);
     })}

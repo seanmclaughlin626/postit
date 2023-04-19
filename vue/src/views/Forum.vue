@@ -6,7 +6,7 @@
     </div>
     <div id="main-forum-view" v-show="!modView">
     <h1 id="forum-name"><b>{{forum.name}}</b></h1>
-    <div class="favorite-bar" v-show="!userHasFavoritedForum">
+    <div class="favorite-bar" v-show="!this.userHasFavoritedForum">
       <p>Loving this forum? <a v-on:click="addFavoriteForum" href="#" class="favorite-button">Favorite it!</a></p>
     </div>
     <b-button style="background-color: #60233f;" v-on:click="creatingPost = !creatingPost" v-if="$store.state.token !== ''">Make a Post!</b-button>
@@ -37,7 +37,8 @@ export default {
       return {
       creatingPost: false,
       modView: false,
-      currentUserIsMod: false
+      currentUserIsMod: false,
+      //userHasFavoritedForum: false
       }
     },
     computed: {
@@ -51,9 +52,12 @@ export default {
           return {id: 0, name: "", lastInteraction: null};
         }
       },
-      userHasFavoritedForum(){
-        return this.$store.state.favoriteForumIds.includes(this.$route.params.id);
-      }
+       userHasFavoritedForum(){
+        console.log("Favorite Ids: " + this.$store.state.favoriteForumIds);
+        console.log(this.$store.state.favoriteForumIds.includes(parseInt(this.$route.params.id)));
+        console.log(this.$route.params.id);
+         return this.$store.state.favoriteForumIds.includes(parseInt(this.$route.params.id));
+       }
     },
     methods: {
       setFavorites(){
@@ -90,7 +94,13 @@ export default {
     });
     this.checkModStatus();
     // this.setFavorites();
-}
+},
+// mounted(){
+//   console.log(this.$route.params.id);
+//   this.userHasFavoritedForum = this.$store.state.favoriteForumIds.includes(this.$route.params.id);
+//   console.log(this.$store.state.favoriteForumIds.length);
+//   console.log(this.userHasFavoritedForum);
+// }
 }
 </script>
 

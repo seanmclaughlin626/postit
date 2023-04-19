@@ -21,7 +21,7 @@ import PopularPosts from '../components/PopularPosts.vue';
 import ForumList from '../components/ForumList.vue';
 import FavoriteForums from '../components/FavoriteForums.vue';
 import CreateForum from '../components/CreateForum.vue';
-import forumService from '../services/ForumService';
+// import forumService from '../services/ForumService';
 import ForumSearch from '../components/ForumSearch.vue';
 
 export default {
@@ -34,11 +34,14 @@ export default {
   },
   name: "home",
   created(){
-        if(this.$store.state.token !== ''){
-    forumService.getFavoriteForumIds().then((response) => {
-      this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
-    })}
-  }
+    //     if(this.$store.state.token !== ''){
+    // forumService.getFavoriteForumIds().then((response) => {
+    //   this.$store.commit("SET_FAVORITE_FORUM_IDS", response.data);
+    // })
+    // forumService.getFavoriteForums().then((response) => {
+    //   this.$store.commit("SET_FAVORITE_FORUMS", response.data);
+    //  })}
+    }
 };
 </script>
 
