@@ -22,7 +22,7 @@ CREATE TABLE posts (
 	forum_id int,
 	author_id int NOT NULL,
 	title varchar(60) NOT NULL,
-	content varchar(150),
+	content varchar(145),
 	image_url varchar (2048),
 	upvotes int DEFAULT 0,
 	downvotes int DEFAULT 0,

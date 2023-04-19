@@ -18,7 +18,7 @@ INSERT INTO forums (forum_name) VALUES ('Sports');
 INSERT INTO forums (forum_name) VALUES ('Collecting');
 
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
-VALUES (1, 1, 'Advice with Loops and Arrays?', 'I am currently learning loops and arrays and was hoping to get advice from other devs on what helped you understand them', (CURRENT_TIMESTAMP - INTERVAL '85 MINUTES'), to_char(CURRENT_TIMESTAMP - INTERVAL '85 MINUTES', 'MM-DD-YYYY HH12:MI:SS AM'), (CURRENT_TIMESTAMP - INTERVAL '85 MINUTES'), 6);
+VALUES (1, 1, 'Advice with Loops and Arrays?', 'I am currently learning loops and arrays and was hoping to get advice from other devs on what helped you understand', (CURRENT_TIMESTAMP - INTERVAL '85 MINUTES'), to_char(CURRENT_TIMESTAMP - INTERVAL '85 MINUTES', 'MM-DD-YYYY HH12:MI:SS AM'), (CURRENT_TIMESTAMP - INTERVAL '85 MINUTES'), 6);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)
 VALUES (1, 2, 'Tech Elevator is the BEST bootcamp to learn java!', 'I attended Tech Elevator to become a junior developer and I cannot reccomend them more!', (CURRENT_TIMESTAMP - INTERVAL '5 DAY'), to_char(CURRENT_TIMESTAMP - INTERVAL '5 DAY', 'MM-DD-YYYY HH12:MI:SS AM'), (CURRENT_TIMESTAMP - INTERVAL '5 DAY'), 3);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, time_formatted, last_interaction, upvotes)

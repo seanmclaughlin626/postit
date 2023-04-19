@@ -5,15 +5,14 @@
       <b-button style="margin-top: 0.2rem; margin-left: 0.1rem; background-color: #60233f;" v-on:click="displayByPopular = false">Most Recent</b-button>
     </div>
     <div v-show="!displayByPopular" class="list">
-      <router-link v-for="post in recentPosts" v-bind:key="post.id" v-bind:to="{name: 'comments', params: {id: post.postId}}">
+      <div class="post-container" v-for="post in recentPosts" v-bind:key="post.id">
         <post  v-bind:post="post"/>
-      </router-link>
-      
+      </div>
     </div>
     <div v-show="displayByPopular" class="list">
-      <router-link v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" v-bind:to="{name: 'comments', params: {id: post.postId}}">
+      <div class="post-container" v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" >
         <post  v-bind:post="post"/>
-      </router-link>
+       </div> 
     </div>
   </div>
 </template>
@@ -70,7 +69,7 @@ data() {
   margin:1em;
 }
 
-a:hover,ul li a:focus{
+.post-container:hover, .post-container:focus {
   transform: scale(1.25);
   position:relative;
   z-index:1;

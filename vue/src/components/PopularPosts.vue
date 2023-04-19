@@ -2,9 +2,9 @@
 <div>
     <h3><b>Popular posts</b></h3>
     <div class="list">
-      <router-link  v-for= "post in popularPosts" v-bind:key="post.postId" v-bind:to="{name: 'comments', params: {id: post.postId}}">
+      <div v-for= "post in popularPosts" v-bind:key="post.postId" class = "post-container">
         <post   v-bind:post="post"/>
-      </router-link>
+      </div>
       </div>
     </div>
 </template>
@@ -66,7 +66,7 @@ export default {
   margin:1em;
 }
 
-a:hover, a:focus{
+.post-container:hover, .post-container:focus{
   transform: scale(1.25);
   position:relative;
   z-index:1;

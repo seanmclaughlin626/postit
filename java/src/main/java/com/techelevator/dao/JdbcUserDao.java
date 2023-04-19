@@ -140,8 +140,8 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<Integer>getAllVotedPostUserByPostId(int postId){
         List<Integer> votedUser = new ArrayList<>();
-        String sql = "SELECT user_id FROM voted_post";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT user_id FROM voted_post WHERE post_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
         while(results.next()){
             votedUser.add(results.getInt("user_id"));
         }

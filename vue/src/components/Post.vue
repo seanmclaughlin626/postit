@@ -1,7 +1,9 @@
 <template>
     <div class="body">
     <div class="post-card" v-show="!isShowingImage">
+      <router-link class="title-link" v-bind:to="{name: 'comments', params: {id: post.postId}}">
       <h2>{{ post.title }}</h2>
+      </router-link>
       <p>{{ post.content }}</p>
       <p class="signature">
         <i
@@ -13,8 +15,15 @@
           by {{ post.authorName }} on {{ post.timeFormatted }}</i
         >
       </p>
-      <button v-on:click="addVotedUser(1)" v-if="!canVoteOnPost">Up vote</button>
-      <button v-on:click="addVotedUser(-1)" v-if="!canVoteOnPost">Down vote</button>
+      <div class="vote-stuff-container">
+      <div class="vote-button-container" v-show="!cantVoteOnPost">
+      <b-button style="background-color: #60233f;" v-on:click="addVotedUser(post.postId, 1)" >Upvote</b-button>
+      <b-button style="background-color: #60233f;" v-on:click="addVotedUser(post.postId, -1)">Downvote</b-button>
+      </div>
+      <div class="upvote-score-container">
+        <h4>{{post.upvoteScore}}</h4>
+      </div>
+      </div>
     </div>
     <div class="post-card" v-show="isShowingImage">
         <h2>{{post.title}}</h2>
@@ -55,9 +64,15 @@ export default {
       this.$router.push({name: 'forum', params: {id: this.post.forumId}});
       this.$router.go(0);
     },
-    addVotedUser(vote){
+    addVotedUser(postId, vote){
         let userId = this.$store.state.user.id;
-        postService.addVotedUser(userId, this.post.id, vote);
+        console.log("here");
+        console.log(this.post);
+        postService.addVotedUser(userId, postId, vote);
+        userService.votedUserSearch(postId).then(response => {
+        this.votedUserList = response.data;
+        location.reload();
+    })
     }
   },
   computed: {
@@ -69,26 +84,41 @@ export default {
       this.mods.includes(this.$store.state.user.username) ||
       this.$store.state.user.authorities[0].name === "ROLE_ADMIN";
     },
-    canVoteOnPost(){
+    cantVoteOnPost(){
         return this.votedUserList.includes(parseInt(this.$store.state.user.id))
     }
   },
   async created(){
-
     userService.modSearch(this.post.forumId).then((response) => {
       this.mods = response.data;
     });
 
-    userService.votedUserSearch(this.post.id).then(response => {
+    userService.votedUserSearch(this.post.postId).then((response) => {
         this.votedUserList = response.data;
     })
   },
-
 };
 </script>
 
 <style scoped>
+.vote-stuff-containter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.vote-button-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.upvote-score-container{
+
+}
+
+.title-link{
+  color: black;
+}
 body {
   margin: 20px auto;
   font-family: "Lato";
