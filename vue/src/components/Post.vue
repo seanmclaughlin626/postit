@@ -13,6 +13,8 @@
           by {{ post.authorName }} on {{ post.timeFormatted }}</i
         >
       </p>
+      <button v-on:click="addVotedUser(1)" v-if="!canVoteOnPost">Up vote</button>
+      <button v-on:click="addVotedUser(-1)" v-if="!canVoteOnPost">Down vote</button>
     </div>
     <div class="post-card" v-show="isShowingImage">
         <h2>{{post.title}}</h2>
@@ -41,6 +43,7 @@ export default {
     return {
       isShowingImage: false,
       mods: [],
+      votedUserList: []
     };
   },
   methods: {
@@ -52,6 +55,10 @@ export default {
       this.$router.push({name: 'forum', params: {id: this.post.forumId}});
       this.$router.go(0);
     },
+    addVotedUser(vote){
+        let userId = this.$store.state.user.id;
+        postService.addVotedUser(userId, this.post.id, vote);
+    }
   },
   computed: {
     buttonsVisible(){
@@ -61,6 +68,9 @@ export default {
       return this.$store.state.user.username === this.post.authorName ||
       this.mods.includes(this.$store.state.user.username) ||
       this.$store.state.user.authorities[0].name === "ROLE_ADMIN";
+    },
+    canVoteOnPost(){
+        return this.votedUserList.includes(parseInt(this.$store.state.user.id))
     }
   },
   async created(){
@@ -68,14 +78,12 @@ export default {
     userService.modSearch(this.post.forumId).then((response) => {
       this.mods = response.data;
     });
-    // if (
-    //   this.$store.state.user.username === this.post.authorName ||
-    //   this.mods.includes(this.$store.state.user.username) ||
-    //   this.$store.state.user.authorities[0].name === "ROLE_ADMIN"
-    // ) {
-    //   this.canDeletePosts = true;
-    // }
+
+    userService.votedUserSearch(this.post.id).then(response => {
+        this.votedUserList = response.data;
+    })
   },
+
 };
 </script>
 

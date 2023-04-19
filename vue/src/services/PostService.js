@@ -27,5 +27,13 @@ export default{
         console.log(token);
         console.log(post)
         return http.delete('/posts', {params: {forumId: parseInt(post.forumId), authorName: post.authorName, postId: parseInt(post.postId)}, headers: {'Authorization': 'Bearer ' + token}})
+    },
+
+    addVotedUser(userId, postId, vote){
+        console.log("info should be here")
+        console.log(userId)
+        console.log(postId)
+        console.log(vote)
+        return http.post(`/posts/${postId}/voted-user`, {params: {userId: parseInt(userId), vote: parseInt(vote)},  headers: {'Authorization': 'Bearer ' + store.state.token}})
     }
 }

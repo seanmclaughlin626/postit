@@ -21,6 +21,6 @@ const http = axios.create({
         },
 
         votedUserSearch(postId){
-            return http.get(`/posts/${postId}/get-users-voted`)
+            return http.get(`/posts/${parseInt(postId)}/get-users-voted`)
         }
     }

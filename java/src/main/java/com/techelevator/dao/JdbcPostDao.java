@@ -82,9 +82,9 @@ public class JdbcPostDao implements PostDao{
     public void addVoted(int userId, int postId, int vote){
         String addVotesSql;
         if (vote == 1){
-            addVotesSql = "UPDATE post SET upvotes = upvotes + 1 WHERE post_id = ?;";
+            addVotesSql = "UPDATE posts SET upvotes = upvotes + 1 WHERE post_id = ?;";
         }else{
-            addVotesSql = "UPDATE post SET downvotes = downvotes + 1 WHERE post_id = ?;";
+            addVotesSql = "UPDATE posts SET downvotes = downvotes + 1 WHERE post_id = ?;";
         }
     jdbcTemplate.update(addVotesSql, postId);
         String addVotedUserSql = "INSERT INTO voted_post(user_id, post_id) VALUES (?, ?);";
