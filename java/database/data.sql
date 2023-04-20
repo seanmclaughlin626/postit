@@ -27,9 +27,9 @@ VALUES(1, 3, 'Any tips on making a nice nav bar?', 'Let me know your favorite me
 
 VALUES (2, 2, 'Whats everyones current Favorite anime?', 'I was wondering what animes everyone is liking right now? My current favs are Vinland Saga and Demon Slayer!', CURRENT_TIMESTAMP, 13);
 INSERT INTO posts (forum_id, author_id, title, content, image_url, time_created, upvotes)
-VALUES(2, 6, 'Best anime characters? GOGOGOGO!', 'Whos the best anime character and why is it Itachi', 'https://w0.peakpx.com/wallpaper/759/390/HD-wallpaper-itachi-uchiha-kakashi-madara-mangekyo-sharingan-minato-sharingan.jpg', CURRENT_TIMESTAMP, 3);
+VALUES(2, 3, 'Best anime characters? GOGOGOGO!', 'Whos the best anime character and why is it Itachi', 'https://w0.peakpx.com/wallpaper/759/390/HD-wallpaper-itachi-uchiha-kakashi-madara-mangekyo-sharingan-minato-sharingan.jpg', CURRENT_TIMESTAMP, 3);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, upvotes)
-VALUES(2, 3, 'Everyone should watch one piece!', 'Its long but worth it', CURRENT_TIMESTAMP, 10);
+VALUES(2, 6, 'Everyone should watch one piece!', 'Its long but worth it', CURRENT_TIMESTAMP, 10);
 INSERT INTO posts (forum_id, author_id, title, content, time_created, upvotes)
 VALUES(2, 4, 'Check out Hells Paradise!', 'Its suuuper good', CURRENT_TIMESTAMP, 10);
 
@@ -87,13 +87,15 @@ INSERT INTO comments (author_id, post_id, content, time_created)
 VALUES(2, 1, 'Lots and lots of practice! Always plan before you code.', CURRENT_TIMESTAMP);
 
 INSERT INTO comments(author_id, post_id, content, time_created)
-VALUES(6, 2, 'UPVOTE UPVOTE!!', CURRENT_TIMESTAMP);
+VALUES(5, 4, 'UPVOTE UPVOTE!!', CURRENT_TIMESTAMP);
+INSERT INTO comments(author_id, post_id, content, time_created)
+VALUES(6, 4, 'Gojo!', CURRENT_TIMESTAMP);
 
 INSERT INTO comments (author_id, post_id, content, time_created)
 VALUES(4, 3, 'I know its not new, but I am really liking monster right now', CURRENT_TIMESTAMP);
 
 INSERT INTO comments (author_id, post_id, content, time_created)
-VALUES(3, 4, 'use bootstrap nav bar. Its easy to use and looks great!', CURRENT_TIMESTAMP);
+VALUES(3, 3, 'use bootstrap nav bar. Its easy to use and looks great!', CURRENT_TIMESTAMP);
 
 INSERT INTO comments (author_id, post_id, content, time_created)
 VALUES(2, 5, 'If I could upvote a million times I would', CURRENT_TIMESTAMP);
