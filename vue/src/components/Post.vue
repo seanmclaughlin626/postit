@@ -85,7 +85,7 @@ export default {
       this.$store.state.user.authorities[0].name === "ROLE_ADMIN";
     },
     cantVoteOnPost(){
-        return this.votedUserList.includes(parseInt(this.$store.state.user.id))
+        return (this.votedUserList.includes(parseInt(this.$store.state.user.id)) || this.$store.state.token === '');
     }
   },
   async created(){
