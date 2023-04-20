@@ -72,6 +72,8 @@ public class JdbcPostDao implements PostDao{
 
     @Override
     public void deletePost(int postId){
+        String deleteVotesSql = "DELETE FROM voted_post WHERE post_id = ?";
+        jdbcTemplate.update(deleteVotesSql, postId);
         String deleteCommentsSql = "DELETE FROM comments WHERE post_id = ?";
         jdbcTemplate.update(deleteCommentsSql, postId);
         String sql = "DELETE FROM posts WHERE post_id = ?";

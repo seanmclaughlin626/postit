@@ -21,7 +21,7 @@
       <b-button style="background-color: #60233f;" v-on:click="addVotedUser(post.postId, -1)">Downvote</b-button>
       </div>
       <div class="upvote-score-container">
-        <h4>{{post.upvoteScore}}</h4>
+        <h5>Upvote score: {{post.upvoteScore}}</h5>
       </div>
       </div>
     </div>
@@ -89,13 +89,22 @@ export default {
     }
   },
   async created(){
-    userService.modSearch(this.post.forumId).then((response) => {
+    if(this.$route.name == 'comments'){
+    userService.modSearch(this.$route.params.id).then((response) => {
       this.mods = response.data;
     });
-
+    userService.votedUserSearch(this.$route.params.id).then((response) => {
+        this.votedUserList = response.data;
+    });
+    }
+    else{
+       userService.modSearch(this.post.forumId).then((response) => {
+      this.mods = response.data;
+    });
     userService.votedUserSearch(this.post.postId).then((response) => {
         this.votedUserList = response.data;
-    })
+    });   
+    }
   },
 };
 </script>
@@ -113,7 +122,7 @@ export default {
 }
 
 .upvote-score-container{
-
+text-align: center;
 }
 
 .title-link{
