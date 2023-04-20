@@ -8,7 +8,7 @@
       <post v-bind:post="post" />
     </div>
     <comments-list />
-    <favorite-forums/>
+    <favorite-forums v-show="$store.state.favoriteForumIds.length > 0"/>
   </div>
 </template>
 

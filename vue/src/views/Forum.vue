@@ -13,7 +13,7 @@
     <create-post :forumId="parseInt($route.params.id)" v-show="creatingPost"/>
     <posts-in-forum v-bind:forum="forum"/>
     </div>
-    <favorite-forums/>
+    <favorite-forums v-show="$store.state.favoriteForumIds.length > 0"/>
   </div>
 </template>
 
@@ -53,10 +53,7 @@ export default {
         }
       },
        userHasFavoritedForum(){
-        console.log("Favorite Ids: " + this.$store.state.favoriteForumIds);
-        console.log(this.$store.state.favoriteForumIds.includes(parseInt(this.$route.params.id)));
-        console.log(this.$route.params.id);
-         return this.$store.state.favoriteForumIds.includes(parseInt(this.$route.params.id));
+         return (this.$store.state.favoriteForumIds.includes(parseInt(this.$route.params.id)) || this.$store.state.token === '');
        }
     },
     methods: {

@@ -80,9 +80,13 @@ export default {
       return this.$route.name === 'comments';
     },
     canDeletePosts(){
+      if(this.$store.state.token !== ""){
       return this.$store.state.user.username === this.post.authorName ||
       this.mods.includes(this.$store.state.user.username) ||
       this.$store.state.user.authorities[0].name === "ROLE_ADMIN";
+      } else {
+        return false;
+      }
     },
     cantVoteOnPost(){
         return (this.votedUserList.includes(parseInt(this.$store.state.user.id)) || this.$store.state.token === '');
