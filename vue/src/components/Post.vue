@@ -31,10 +31,10 @@
     </div>
     <div class="button-bar-container">
     <div class="button-bar" v-if="buttonsVisible">
-    <b-button class="delete-button" v-if="canDeletePosts === true" style="background-color: #60233f; margin-right: 8rem; padding:0.25rem;" v-on:click="deletePost()">Delete post</b-button>
+    <b-button class="delete-button" v-if="canDeletePosts === true" style="background-color: #60233f; padding:0.25rem;" v-on:click="deletePost()">Delete post</b-button>
     <div class="toggle-image-buttons">
-    <b-button class="view-image-button" v-show="!isShowingImage && post.url != null" v-on:click="changePostView" style="background-color: #60233f; margin-left: 1rem; padding:0.25rem;">View Image</b-button>
-    <b-button class="view-post-button" v-show="isShowingImage" v-on:click="changePostView" style="background-color: #60233f; margin-left:1rem;  padding:0.25rem;">View Post</b-button>
+    <b-button class="view-image-button" v-if="!isShowingImage && post.url != null" v-on:click="changePostView" style="background-color: #60233f; padding:0.25rem;">View Image</b-button>
+    <b-button class="view-post-button" v-if="isShowingImage" v-on:click="changePostView" style="background-color: #60233f; padding:0.25rem;">View Post</b-button>
     </div>
     </div>
     </div>
