@@ -25,7 +25,7 @@
       </div>
       </div>
     </div>
-    <div class="post-card" v-show="isShowingImage">
+    <div class="post-card-img" v-show="isShowingImage">
         <h2>{{post.title}}</h2>
         <div class="image-container">
         <img :src="post.url" alt="">
@@ -170,13 +170,29 @@ p {
   transform: rotate(-0.5deg);
 }
 
+.post-card-img {
+  text-decoration: none;
+  color: #000;
+  background: #ffc;
+  display: block;
+  height: 20em;
+  width: 20em;
+  padding: 1em;
+  margin: 1em;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+  display: flex;
+  flex-direction: column;
+  transform: rotate(-0.5deg);
+}
+
 .signature {
   font-size: 0.85rem;
 }
 
 .image-container{
+  height: 100%;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: center;
 }
 
