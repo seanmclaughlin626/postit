@@ -21,22 +21,22 @@
 //============ COMPONENTS ===========
 @import "~bootstrap/scss/nav";
 @import "~bootstrap/scss/navbar";
-// @import "bootstrap/scss/card";
-// @import "bootstrap/scss/breadcrumb";
-// @import "bootstrap/scss/pagination";
-// @import "bootstrap/scss/badge";
-// @import "bootstrap/scss/jumbotron";
-// @import "bootstrap/scss/alert";
-// @import "bootstrap/scss/progress";
-// @import "bootstrap/scss/media";
-// @import "bootstrap/scss/list-group";
-// @import "~bootstrap/scss/close";
-// @import "~bootstrap/scss/toasts";
-// @import "~bootstrap/scss/modal";
-// @import "~bootstrap/scss/tooltip";
-// @import "~bootstrap/scss/popover";
-// @import "~bootstrap/scss/carousel";
-// @import "~bootstrap/scss/spinners";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/jumbotron";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/media";
+@import "bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/spinners";
 
 //=============== UTILITIES =================
 @import "~bootstrap/scss/utilities/align";
@@ -50,7 +50,7 @@
 @import "~bootstrap/scss/utilities/interactions";
 @import "~bootstrap/scss/utilities/overflow";
 @import "~bootstrap/scss/utilities/position";
-@import "~bootstrap/scss/utilities/screenreaders";
+// @import "~bootstrap/scss/utilities/screenreaders";
 @import "~bootstrap/scss/utilities/shadows";
 @import "~bootstrap/scss/utilities/sizing";
 @import "~bootstrap/scss/utilities/spacing";
@@ -72,33 +72,33 @@
 @import "~bootstrap-vue/src/custom-controls";
 
 //================= COMPONENTS ====================
-// @import "~bootstrap-vue/src/components/avatar/index";
-// @import "~bootstrap-vue/src/components/calendar/index";
-// @import "~bootstrap-vue/src/components/card/index";
-// @import "~bootstrap-vue/src/components/dropdown/index";
-// @import "~bootstrap-vue/src/components/form-checkbox/index";
-// @import "~bootstrap-vue/src/components/form-datepicker/index";
-// @import "~bootstrap-vue/src/components/form-file/index";
-// @import "~bootstrap-vue/src/components/form-input/index";
-// @import "~bootstrap-vue/src/components/form-radio/index";
-// @import "~bootstrap-vue/src/components/form-rating/index";
-// @import "~bootstrap-vue/src/components/form-spinbutton/index";
-// @import "~bootstrap-vue/src/components/form-tags/index";
-// @import "~bootstrap-vue/src/components/form-timepicker/index";
-// @import "~bootstrap-vue/src/components/input-group/index";
-// @import "~bootstrap-vue/src/components/media/index";
-// @import "~bootstrap-vue/src/components/modal/index";
+@import "~bootstrap-vue/src/components/avatar/index";
+@import "~bootstrap-vue/src/components/calendar/index";
+@import "~bootstrap-vue/src/components/card/index";
+@import "~bootstrap-vue/src/components/dropdown/index";
+@import "~bootstrap-vue/src/components/form-checkbox/index";
+@import "~bootstrap-vue/src/components/form-datepicker/index";
+@import "~bootstrap-vue/src/components/form-file/index";
+@import "~bootstrap-vue/src/components/form-input/index";
+@import "~bootstrap-vue/src/components/form-radio/index";
+@import "~bootstrap-vue/src/components/form-rating/index";
+@import "~bootstrap-vue/src/components/form-spinbutton/index";
+@import "~bootstrap-vue/src/components/form-tags/index";
+@import "~bootstrap-vue/src/components/form-timepicker/index";
+@import "~bootstrap-vue/src/components/input-group/index";
+@import "~bootstrap-vue/src/components/media/index";
+@import "~bootstrap-vue/src/components/modal/index";
 @import "~bootstrap-vue/src/components/nav/index";
 @import "~bootstrap-vue/src/components/navbar/index";
-// @import "~bootstrap-vue/src/components/pagination-nav/index";
-// @import "~bootstrap-vue/src/components/pagination/index";
-// @import "~bootstrap-vue/src/components/popover/index";
-// @import "~bootstrap-vue/src/components/sidebar/index";
-// @import "~bootstrap-vue/src/components/skeleton/index";
-// @import "~bootstrap-vue/src/components/table/index";
-// @import "~bootstrap-vue/src/components/time/index";
-// @import "~bootstrap-vue/src/components/toast/index";
-// @import "~bootstrap-vue/src/components/tooltip/index";
+@import "~bootstrap-vue/src/components/pagination-nav/index";
+@import "~bootstrap-vue/src/components/pagination/index";
+@import "~bootstrap-vue/src/components/popover/index";
+@import "~bootstrap-vue/src/components/sidebar/index";
+@import "~bootstrap-vue/src/components/skeleton/index";
+@import "~bootstrap-vue/src/components/table/index";
+@import "~bootstrap-vue/src/components/time/index";
+@import "~bootstrap-vue/src/components/toast/index";
+@import "~bootstrap-vue/src/components/tooltip/index";
 
 //====================== ICONS ======================
 @import "~bootstrap-vue/src/icons"

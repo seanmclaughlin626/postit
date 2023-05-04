@@ -1,9 +1,16 @@
 <template>
+  <div>
   <form v-on:submit.prevent="createForum">
     <label for="name">Forum name: </label>
-    <input type="text" name="name" id="name" v-model="forum.name" />
+    <input type="text" name="name" id="name" v-model="forum.name"/>
     <b-button style="margin-left: 1rem; background-color: #a46434;" type="submit">PostIt!</b-button>
   </form>
+  <div id="alert">
+      <b-alert v-model="displayError" variant="danger" dismissible>
+      {{ errorMsg }}
+    </b-alert>
+  </div>  
+  </div>
 </template>
 
 <script>
@@ -15,6 +22,8 @@ export default {
       forum: {
         name: "",
       },
+      displayError: false,
+      errorMsg: "Invalid or taken forum name. Try something else.",
     };
   },
   methods: {
@@ -23,18 +32,23 @@ export default {
       forumService.createForum(this.forum).then((response) => {
         if (response.status === 201) {
           this.$router.push({name: 'forum', params: {id: response.data}})
-        }
-        // TODO create alert messsage when a forum is created // if the forum name exists
-      });
-      } 
-      // TODO "else" front end validation/alert if empty string sent, include spaces too
+        } 
+      }).catch(() => {
+          this.displayError = true;
+        })
+      } else {
+        this.displayError = true;
+      }
     },
   }
 };
 </script>
 
-<style>
+<style scoped>
 label{
   margin-right: 1rem;
+}
+#alert{
+  margin-top: 1rem;
 }
 </style>

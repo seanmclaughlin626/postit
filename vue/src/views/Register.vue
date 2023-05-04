@@ -1,10 +1,13 @@
 <template>
   <div id="register" class="text-center">
+    <div id="alert-container">
+    <b-alert v-model="registrationErrors" variant="danger" dismissible>
+      {{registrationErrorMsg}}
+    </b-alert>
+    </div>
+    <div id="form-container">
     <form @submit.prevent="register">
       <h2><b>Create Account</b></h2>
-      <div role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
       <div class="form-input-group">
         <label for="username">Username</label>
         <input
@@ -37,6 +40,7 @@
         >
       </p>
     </form>
+    </div>
   </div>
 </template>
 
@@ -93,6 +97,7 @@ export default {
 <style scoped>
 .form-input-group {
   margin-bottom: 1rem;
+  display: flex;
 }
 label {
   margin-right: 0.5rem;
@@ -112,8 +117,15 @@ form {
   font-family: courier, monospace;
 }
 
-div {
+#register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#form-container {
   display: flex;
   justify-content: center;
 }
+
 </style>

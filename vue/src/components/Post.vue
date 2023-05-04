@@ -10,10 +10,8 @@
           >Posted in
           <router-link
             v-bind:to="{ name: 'forum', params: { id: this.post.forumId } }"
-            >{{ post.forumName }}</router-link
-          >
-          by {{ post.authorName }} on {{ post.timeFormatted }}</i
-        >
+            >{{ post.forumName }}</router-link>
+          by {{ post.authorName }} on {{ post.timeFormatted }}</i>
       </p>
       <div class="vote-stuff-container">
       <div class="vote-button-container" v-show="!cantVoteOnPost">

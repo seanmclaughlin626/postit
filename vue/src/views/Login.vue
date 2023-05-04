@@ -1,10 +1,13 @@
 <template>
   <div id="login">
+    <b-alert v-model="invalidCredentials" variant="danger" dismissible>
+      Invalid username and password! Try again.
+    </b-alert>
     <form @submit.prevent="login">
       <h2><b>Please Sign In</b></h2>
-      <div role="alert" v-if="invalidCredentials">
+      <!-- <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
-      </div>
+      </div> -->
       <div role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
@@ -75,6 +78,8 @@ export default {
 <style scoped>
 .form-input-group {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
 label {
   margin-right: 0.5rem;
@@ -93,8 +98,10 @@ form {
   justify-content: space-between;
   font-family: courier, monospace;
 }
-div {
+
+#login{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
