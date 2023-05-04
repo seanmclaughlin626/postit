@@ -27,7 +27,9 @@
     </div>
     <div class="post-card" v-show="isShowingImage">
         <h2>{{post.title}}</h2>
+        <div class="image-container">
         <img :src="post.url" alt="">
+        </div>
     </div>
     <div class="button-bar-container">
     <div class="button-bar" v-if="buttonsVisible">
@@ -172,10 +174,15 @@ p {
   font-size: 0.85rem;
 }
 
+.image-container{
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
 img{
-  height: 15em;
-  width: 15em;
-  align-self: center;
+  height: 13em;
+  width: 13em;
 }
 
 .button-bar{
