@@ -66,8 +66,6 @@ export default {
     },
     addVotedUser(postId, vote){
         let userId = this.$store.state.user.id;
-        console.log("here");
-        console.log(this.post);
         postService.addVotedUser(userId, postId, vote);
         userService.votedUserSearch(postId).then(response => {
         this.votedUserList = response.data;

@@ -53,7 +53,7 @@ export default {
           this.userToPromote.username = username;
           forumService.promoteUserToMod(this.$route.params.id, this.userToPromote).then((response) => {
               if(response.status == 201){
-                  console.log("Mod promoted!");
+                  // console.log("Mod promoted!");
                 //   TODO make this a snazzy alert instead of a log
                 this.mods.push(username);
                 this.search.searchInput = "";
