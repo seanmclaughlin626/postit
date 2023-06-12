@@ -64,7 +64,6 @@ export default {
   },
   created(){
         userService.modSearch(this.$route.params.id).then((response) => {
-          console.log(response.data);
           this.mods = response.data;
         })
       }

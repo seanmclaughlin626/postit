@@ -43,7 +43,7 @@ export default {
             this.post.author = this.$store.state.user.id;
             PostService.createPost(this.post).then(response => {
                 if(response.status === 201){
-                  console.log("Post created!");
+                //   console.log("Post created!");
                 //   TODO bootstrap alert instead of log
                 }
             })

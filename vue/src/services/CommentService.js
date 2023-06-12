@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../store/index';
 
 const http = axios.create({
-    baseURL: "http://localhost:9000"
+    baseURL: process.env.VUE_APP_REMOTE_API
 })
 
 export default {

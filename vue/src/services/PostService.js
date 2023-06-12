@@ -2,7 +2,7 @@ import axios from "axios";
 import store from '../store/index';
 
 const http = axios.create({
-    baseURL: "http://localhost:9000"
+    baseURL: process.env.VUE_APP_REMOTE_API
 })
 
 export default{
@@ -27,9 +27,6 @@ export default{
     },
 
     addVotedUser(userId, postId, vote){
-        console.log("userId: " + userId);
-        console.log("postId: " + postId);
-        console.log("vote: " + vote)
         return http.post(`/posts/${postId}/voted-user`, {userId: parseInt(userId), vote: parseInt(vote)},  {headers: {'Authorization': 'Bearer ' + store.state.token}})
     }
 }

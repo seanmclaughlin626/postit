@@ -30,7 +30,7 @@ export default {
         addComment(){
             commentService.createComment(this.comment).then(response => {
                 if(response.status === 201){
-                    console.log("Comment Created");
+                    // console.log("Comment Created");
                    //   TODO bootstrap alert instead of log
                 }
             })
