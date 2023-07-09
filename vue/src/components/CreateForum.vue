@@ -16,7 +16,7 @@
 <script>
 import forumService from "../services/ForumService";
 
-export default {
+export default{
   data() {
     return {
       forum: {

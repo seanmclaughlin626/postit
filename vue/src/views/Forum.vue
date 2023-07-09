@@ -90,14 +90,7 @@ export default {
         this.$store.commit("SET_FORUMS", response.data);
     });
     this.checkModStatus();
-    // this.setFavorites();
-},
-// mounted(){
-//   console.log(this.$route.params.id);
-//   this.userHasFavoritedForum = this.$store.state.favoriteForumIds.includes(this.$route.params.id);
-//   console.log(this.$store.state.favoriteForumIds.length);
-//   console.log(this.userHasFavoritedForum);
-// }
+}
 }
 </script>
 

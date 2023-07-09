@@ -4,12 +4,12 @@
       <b-button style="margin-top: 0.2rem; margin-right: 0.1rem; background-color: #60233f;" v-on:click="displayByPopular = true">Most Popular</b-button>
       <b-button style="margin-top: 0.2rem; margin-left: 0.1rem; background-color: #60233f;" v-on:click="displayByPopular = false">Most Recent</b-button>
     </div>
-    <div v-show="!displayByPopular" class="list">
+    <div v-if="!displayByPopular" class="list">
       <div class="post-container" v-for="post in recentPosts" v-bind:key="post.id">
         <post  v-bind:post="post"/>
       </div>
     </div>
-    <div v-show="displayByPopular" class="list">
+    <div v-if="displayByPopular" class="list">
       <div class="post-container" v-for="post in popularPostsByUpvoteScore" v-bind:key="post.id" >
         <post  v-bind:post="post"/>
        </div> 
@@ -26,6 +26,7 @@ export default {
 name: 'posts-in-forum',
 props: {forum: Object},
 components: {Post},
+
 computed: {
 
   recentPosts(){
