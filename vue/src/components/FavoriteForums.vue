@@ -49,6 +49,10 @@ h5:hover{
     text-decoration: underline;
 }
 
+ul{
+    padding:0;
+}
+
 div{
     text-align: center;
   font-family: courier, monospace;

@@ -41,16 +41,11 @@ export default {
 </script>
 
 <style scoped>
-ul,
-h4 {
-  border-bottom: 1px solid darkgray;
-  margin-bottom: 0%;
-}
 div {
   color: #555;
   font-size: 22px;
   padding: 0 !important;
-  width: 500px;
+  width: 80%;
   font-family: courier, monospace;
   border: 1px solid #dedede;
   
@@ -58,12 +53,11 @@ div {
 .forum-list, h4 {
   list-style: none;
   border-bottom: 1px dotted #ccc;
-  text-indent: 25px;
+  text-align: center;
   height: auto;
-  padding: 10px;
   text-transform: capitalize;
   background-color: #f5f5f5;
-  width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   

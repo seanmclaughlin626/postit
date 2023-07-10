@@ -1,9 +1,9 @@
 <template>
   <div>
   <form v-on:submit.prevent="createForum">
-    <label for="name">Forum name: </label>
+    <label for="name">Name it: </label>
     <input type="text" name="name" id="name" v-model="forum.name"/>
-    <b-button style="margin-left: 1rem; background-color: #a46434;" type="submit">PostIt!</b-button>
+    <b-button style="background-color: #a46434;" type="submit">PostIt!</b-button>
   </form>
   <div id="alert">
       <b-alert v-model="displayError" variant="danger" dismissible>
@@ -50,5 +50,19 @@ label{
 }
 #alert{
   margin-top: 1rem;
+}
+button{
+  margin-left: 1rem;
+}
+@media only screen and (max-width: 600px) {
+  button{
+    width: 100%;
+    margin-left: 0;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
 }
 </style>

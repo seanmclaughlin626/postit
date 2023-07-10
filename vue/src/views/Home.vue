@@ -5,7 +5,7 @@
         <forum-search/>
         </div>
     <div class="forum-creation" v-show="$store.state.token !== ''">
-      Don't see a forum you like? Make one! <create-forum/>
+      <p>Don't see a forum you like? Make one!</p> <create-forum/>
       </div>
       </div>
     <popular-posts/>
@@ -53,10 +53,15 @@ export default {
   border: 2px #60233f solid;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .home{
   padding-bottom: 3rem;
+}
+
+p{
+  margin-bottom: 2px;
 }
 
 .forum-lists{

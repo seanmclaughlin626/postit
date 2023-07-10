@@ -81,8 +81,9 @@ export default {
 .search-list, .mod-list {
   color: #555;
   font-size: 22px;
+  text-align: center;
   padding: 0 !important;
-  width: 500px;
+  width: 100%;
   font-family: courier, monospace;
   border: 1px solid #dedede;
   
@@ -96,7 +97,7 @@ export default {
   padding: 10px;
   text-transform: capitalize;
   background-color: #f5f5f5;
-  width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
 }
