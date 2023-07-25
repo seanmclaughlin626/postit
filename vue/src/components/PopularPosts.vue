@@ -34,26 +34,36 @@ export default {
       let yesterday = new Date();
       let lastWeek = new Date();
       let lastThirtyDays = new Date();
+      let lastYear = new Date();
       yesterday.setHours(yesterday.getHours() - 24);
       lastWeek.setHours(lastWeek.getHours() - 168);
-      lastThirtyDays.setHours(lastThirtyDays.setHours() - 720);
-      let array = this.$store.state.posts.filter((post) => {
+      lastThirtyDays.setHours(lastThirtyDays.getHours() - 720);
+      lastYear.setHours(lastYear.getHours() - 8760);
+      let postArray = this.$store.state.posts.filter((post) => {
         let postDate = new Date(post.lastInteraction);
         return postDate.getTime() >= yesterday.getTime();
       });
-      if (array.length < 10) {
-        array = this.$store.state.posts.filter((post) => {
+      if (postArray.length < 10) {
+        postArray = this.$store.state.posts.filter((post) => {
           let postDate = new Date(post.lastInteraction);
           return postDate.getTime() >= lastWeek.getTime();
         });
-        if (array.length < 10) {
-          array = this.$store.state.posts.filter((post) => {
-            let postDate = new Date(post.lastInteraction);
-            return postDate.getTime() >= lastWeek.getTime();
-          });
-        }
       }
-      return array;
+      if (postArray.length < 10) {
+        postArray = this.$store.state.posts.filter((post) => {
+          let postDate = new Date(post.lastInteraction);
+          return (
+            postDate.getTime() >= lastThirtyDays.getTime()
+          );
+        });
+      }
+      if (postArray.length < 10) {
+        postArray = this.$store.state.posts.filter((post) => {
+          let postDate = new Date(post.lastInteraction);
+          return postDate.getTime() >= lastYear.getTime();
+        });
+      }
+      return postArray;
     },
     popularPosts() {
       let recentPosts = this.recentPosts;
